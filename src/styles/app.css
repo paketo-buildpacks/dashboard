@@ -1,0 +1,18 @@
+.app header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  background: #EFEFEF;
+  box-shadow: 0 0 20px #BBB;
+}
+
+.app .logo {
+  height: 50px;
+}
+
+.app h1 {
+  margin: 0;
+  font-weight: 100;
+}

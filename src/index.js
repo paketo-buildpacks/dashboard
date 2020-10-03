@@ -6,17 +6,22 @@ import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 
 import App from './components/app';
-import RepoStore from './stores/repo_store';
-import GitHubClient from './github/client';
 
-const gitHubClient = new GitHubClient();
+import GitHubClient from './github/client';
+import RepoStore from './stores/repo_store';
+import IssueStore from './stores/issue_store';
+
+const storage = window.localStorage;
+const gitHubClient = new GitHubClient({ storage: storage });
 const repoStore = new RepoStore({ client: gitHubClient });
+const issueStore = new IssueStore({ client: gitHubClient });
 
 ReactDOM.render(
   <React.StrictMode>
     <App
-      repoStore={repoStore}
       gitHubClient={gitHubClient}
+      repoStore={repoStore}
+      issueStore={issueStore}
     />
   </React.StrictMode>,
   document.getElementById('root')

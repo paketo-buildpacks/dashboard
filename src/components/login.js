@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import '../styles/login.css';
 
 type Props = {
   assignToken: string => void;
@@ -37,8 +38,8 @@ class Login extends React.Component<Props, State> {
 
   render(): Node {
     return (
-      <form id="login" onSubmit={this.handleSubmit}>
-        <label htmlFor="token">Token</label>
+      <form className="login" onSubmit={this.handleSubmit}>
+        <label htmlFor="token">GitHub Personal Access Token</label>
         <input type="text" id="token" value={this.state.token} onChange={this.handleChange} />
         <input type="submit" value="Submit" />
       </form>

@@ -8,7 +8,7 @@ type ListCall = {
   },
 };
 
-class RepoStore {
+export default class RepoStore {
   listCall: ListCall;
 
   constructor() {
@@ -23,5 +23,3 @@ class RepoStore {
     return this.listCall.returns.repos;
   }
 }
-
-export default RepoStore;

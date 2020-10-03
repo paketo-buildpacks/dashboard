@@ -14,30 +14,46 @@ export type GitHubClientResponse = {
   },
 };
 
+interface Storage {
+  getItem(key: string): ?string;
+  setItem(key: string, value: string): void;
+};
+
+type Props = {
+  storage: Storage,
+};
+
 export default class GitHubClient {
-  token: string;
+  storage: Storage;
+
   assignToken: string => void;
   authenticated: void => boolean;
 
-  constructor() {
-    this.token = '';
+  constructor(props: Props) {
+    this.storage = props.storage;
 
     this.assignToken = this.assignToken.bind(this);
     this.authenticated = this.authenticated.bind(this);
   }
 
   authenticated(): boolean {
-    return this.token !== '';
+    return !!this.storage.getItem('token');
   }
 
   assignToken(token: string) {
-    this.token = token;
+    this.storage.setItem('token', token);
   }
 
   async do(request: GitHubClientRequest): Promise<GitHubClientResponse> {
-    const octokit = new Octokit({ auth: this.token });
+    const octokit = new Octokit({ auth: this.storage.getItem('token') });
     const result = await octokit.request(`${request.method} ${request.path}`);
 
     return result;
   }
 }
+
+export interface GitHubClientInterface {
+  assignToken(token: string): void;
+  authenticated(): boolean;
+  do(GitHubClientRequest): Promise<GitHubClientResponse>;
+};

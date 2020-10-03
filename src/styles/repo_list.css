@@ -1,0 +1,12 @@
+.repo-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.repo-list .loading {
+  width: 100%;
+  text-align: center;
+  color: #ADADAD;
+}

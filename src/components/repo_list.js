@@ -2,15 +2,15 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import '../styles/repo_list.css';
 import Repo from '../models/repo';
 import RepoItem from './repo_item';
-
-interface Store {
-  list(): Promise<Repo[]>;
-};
+import { IssueStoreInterface } from '../stores/issue_store';
+import { RepoStoreInterface } from '../stores/repo_store';
 
 type Props = {
-  store: Store,
+  store: RepoStoreInterface,
+  issueStore: IssueStoreInterface,
 };
 
 type State = {
@@ -35,11 +35,15 @@ class RepoList extends React.Component<Props, State> {
   }
 
   render(): Node {
-    let items = "Loading...";
+    let items = (<div className="loading">Loading...</div>);
 
     if (!this.state.loading) {
       items = this.state.repos.map((repo) => (
-        <RepoItem key={repo.key} repo={repo} />
+        <RepoItem
+          key={repo.key}
+          repo={repo}
+          issueStore={this.props.issueStore}
+        />
       ));
     }
 

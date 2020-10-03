@@ -5,20 +5,26 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './app';
 
-import RepoStore from '../fakes/repo_store';
 import GitHubClient from '../fakes/github_client';
+import RepoStore from '../fakes/repo_store';
+import IssueStore from '../fakes/issue_store';
 
 describe('App', () => {
-  let result, repoStore, gitHubClient;
+  let result;
+  let gitHubClient: GitHubClient;
+  let repoStore: RepoStore;
+  let issueStore: IssueStore;
 
   beforeEach(() => {
-    repoStore = new RepoStore();
     gitHubClient = new GitHubClient();
+    repoStore = new RepoStore();
+    issueStore = new IssueStore();
 
     result = render(
       <App
-        repoStore={repoStore}
         gitHubClient={gitHubClient}
+        repoStore={repoStore}
+        issueStore={issueStore}
       />
     );
   });
@@ -31,7 +37,7 @@ describe('App', () => {
 
   describe('when there is no token', () => {
     it('renders the login form', () => {
-      const form = result.container.querySelector('form#login');
+      const form = result.container.querySelector('form.login');
 
       expect(form).toBeInTheDocument();
     });
@@ -59,7 +65,7 @@ describe('App', () => {
     });
 
     it('does not render the login form', () => {
-      const form = result.container.querySelector('form#login');
+      const form = result.container.querySelector('form.login');
       expect(form).not.toBeInTheDocument();
     });
 

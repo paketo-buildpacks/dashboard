@@ -5,14 +5,18 @@
   align-items: center;
   justify-content: flex-start;
   background: #EFEFEF;
-  box-shadow: 0 0 20px #BBB;
+  box-shadow: 0 4px 10px #BBB;
 }
 
-.app .logo {
+.app header .logo {
   height: 50px;
 }
 
-.app h1 {
+.app header h1 {
   margin: 0;
   font-weight: 100;
+}
+
+.app section.body {
+  padding: 20px;
 }

@@ -1,0 +1,16 @@
+.repo-item {
+  min-width: 200px;
+  box-shadow: 0 4px 10px #BBB;
+  margin: 5px;
+}
+
+.repo-item .name {
+  background: #F2F2F2;
+  text-align: center;
+  padding: 10px;
+  display: block;
+}
+
+.repo-item .content {
+  padding: 10px;
+}

@@ -2,24 +2,21 @@
 
 import React from 'react';
 import type { Node } from 'react';
+
 import '../styles/app.css';
+
 import Header from './header';
 import Login from './login';
 import RepoList from './repo_list';
-import Repo from '../models/repo';
 
-interface RepoStore {
-  list(): Promise<Repo[]>;
-};
-
-interface GitHubClient {
-  assignToken(token: string): void;
-  authenticated(): boolean;
-};
+import { RepoStoreInterface } from '../stores/repo_store';
+import { IssueStoreInterface } from '../stores/issue_store';
+import { GitHubClientInterface } from '../github/client';
 
 type Props = {
-  repoStore: RepoStore,
-  gitHubClient: GitHubClient,
+  repoStore: RepoStoreInterface,
+  issueStore: IssueStoreInterface,
+  gitHubClient: GitHubClientInterface,
 };
 
 type State = {
@@ -46,13 +43,18 @@ class App extends React.Component<Props, State> {
     let body = <Login assignToken={this.assignToken} />;
 
     if (this.state.authenticated) {
-      body = <RepoList store={this.props.repoStore} />
+      body = <RepoList
+        store={this.props.repoStore}
+        issueStore={this.props.issueStore}
+      />
     }
 
     return (
       <div className="app">
         <Header />
-        {body}
+        <section className="body">
+          {body}
+        </section>
       </div>
     );
   }

@@ -1,12 +1,15 @@
 // @flow
 
 import GitHubClient from './client';
+import LocalStorage from '../fakes/local_storage';
 
 describe('GitHubClient', () => {
   let client: GitHubClient;
+  let storage: LocalStorage;
 
   beforeEach(() => {
-    client = new GitHubClient();
+    storage = new LocalStorage();
+    client = new GitHubClient({ storage: storage });
   });
 
   describe('authenticated', () => {
@@ -24,6 +27,16 @@ describe('GitHubClient', () => {
       it('returns true', () => {
         expect(client.authenticated()).toEqual(true);
       });
+    });
+  });
+
+  describe('assignToken', () => {
+    it('stores the token in storage', () => {
+      expect(storage.getItem('token')).toBeNull();
+
+      client.assignToken('some-token');
+
+      expect(storage.getItem('token')).toEqual('some-token');
     });
   });
 });

@@ -1,18 +1,14 @@
 // @flow
 
 import Repo from '../models/repo';
-import type { GitHubClientRequest, GitHubClientResponse } from '../github/client';
-
-interface Client {
-  do(GitHubClientRequest): Promise<GitHubClientResponse>;
-};
+import { GitHubClientInterface, type GitHubClientResponse } from '../github/client';
 
 type Props = {
-  client: Client,
+  client: GitHubClientInterface,
 };
 
 export default class RepoStore {
-  client: Client;
+  client: GitHubClientInterface;
 
   constructor(props: Props) {
     this.client = props.client;
@@ -20,7 +16,6 @@ export default class RepoStore {
 
   async list(): Promise<Repo[]> {
     let path: string = '/orgs/paketo-buildpacks/repos';
-
     let repos: Repo[] = [];
 
     while (path) {
@@ -31,14 +26,33 @@ export default class RepoStore {
 
       for (const repo of response.data) {
         repos.push(new Repo({
-          key: repo.id,
-          name: repo.name,
+          name: repo.full_name,
+           url: repo.html_url,
         }));
       }
 
       path = ((response.headers.link || "").match( /<([^>]+)>;\s*rel="next"/) || [])[1];
     }
 
+    repos.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+
+      if (nameA < nameB) {
+        return -1;
+      }
+
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     return repos;
   }
 }
+
+export interface RepoStoreInterface {
+  list(): Promise<Repo[]>;
+};

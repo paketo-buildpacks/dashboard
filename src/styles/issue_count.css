@@ -1,0 +1,9 @@
+.issue-count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.issue-count .count {
+  margin-left: 5px;
+}

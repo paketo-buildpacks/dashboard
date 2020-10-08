@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/paketo-dashboard/static/css/main.fdaeb553.chunk.css",
+    "main.js": "/paketo-dashboard/static/js/main.a0de786c.chunk.js",
+    "main.js.map": "/paketo-dashboard/static/js/main.a0de786c.chunk.js.map",
+    "runtime-main.js": "/paketo-dashboard/static/js/runtime-main.2d71cb59.js",
+    "runtime-main.js.map": "/paketo-dashboard/static/js/runtime-main.2d71cb59.js.map",
+    "static/js/2.c0d99af6.chunk.js": "/paketo-dashboard/static/js/2.c0d99af6.chunk.js",
+    "static/js/2.c0d99af6.chunk.js.map": "/paketo-dashboard/static/js/2.c0d99af6.chunk.js.map",
+    "index.html": "/paketo-dashboard/index.html",
+    "precache-manifest.328b55565b13b8e0a51411c37a7e4ec7.js": "/paketo-dashboard/precache-manifest.328b55565b13b8e0a51411c37a7e4ec7.js",
+    "service-worker.js": "/paketo-dashboard/service-worker.js",
+    "static/css/main.fdaeb553.chunk.css.map": "/paketo-dashboard/static/css/main.fdaeb553.chunk.css.map",
+    "static/js/2.c0d99af6.chunk.js.LICENSE.txt": "/paketo-dashboard/static/js/2.c0d99af6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2d71cb59.js",
+    "static/js/2.c0d99af6.chunk.js",
+    "static/css/main.fdaeb553.chunk.css",
+    "static/js/main.a0de786c.chunk.js"
+  ]
+}

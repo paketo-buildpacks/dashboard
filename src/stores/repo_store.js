@@ -15,23 +15,26 @@ export default class RepoStore {
   }
 
   async list(): Promise<Repo[]> {
-    let path: string = '/orgs/paketo-buildpacks/repos';
     let repos: Repo[] = [];
 
-    while (path) {
-      const response: GitHubClientResponse = await this.client.do({
-        method: 'GET',
-        path: path
-      });
+    for (const org of ['paketo-buildpacks', 'paketo-community']) {
+      let path: string = `/orgs/${org}/repos`;
 
-      for (const repo of response.data) {
-        repos.push(new Repo({
-          name: repo.full_name,
-           url: repo.html_url,
-        }));
+      while (path) {
+        const response: GitHubClientResponse = await this.client.do({
+          method: 'GET',
+          path: path
+        });
+
+        for (const repo of response.data) {
+          repos.push(new Repo({
+            name: repo.full_name,
+             url: repo.html_url,
+          }));
+        }
+
+        path = ((response.headers.link || "").match( /<([^>]+)>;\s*rel="next"/) || [])[1];
       }
-
-      path = ((response.headers.link || "").match( /<([^>]+)>;\s*rel="next"/) || [])[1];
     }
 
     repos.sort((a, b) => {

@@ -10,9 +10,12 @@ type AuthenticatedCall = {
 
 type DoCall = {
   callCount: number,
+  receives: {
+    requests: GitHubClientRequest[],
+  },
   returns: {
-    responses: GitHubClientResponse[]
-  }
+    responses: GitHubClientResponse[],
+  },
 }
 
 export default class GitHubClient {
@@ -28,6 +31,9 @@ export default class GitHubClient {
     };
     this.doCall = {
       callCount: 0,
+      receives: {
+        requests: [],
+      },
       returns: {
         responses: [],
       },
@@ -48,6 +54,8 @@ export default class GitHubClient {
 
   do(request: GitHubClientRequest): Promise<GitHubClientResponse> {
     this.doCall.callCount++;
+    this.doCall.receives.requests.push(request);
+
     const response = this.doCall.returns.responses[this.doCall.callCount-1] || {};
 
     return Promise.resolve(response);

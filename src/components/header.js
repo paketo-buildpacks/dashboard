@@ -7,9 +7,14 @@ type Props = {};
 
 class Header extends React.Component<Props> {
   render(): Node {
+    let logoURL = '/logo512.png';
+    if (process.env.PUBLIC_URL) {
+      logoURL = `${process.env.PUBLIC_URL}/logo512.png`;
+    }
+
     return (
       <header>
-        <img src="/logo512.png" className="logo" alt="logo" />
+        <img src={logoURL} className="logo" alt="logo" />
         <h1>Paketo Buildpacks</h1>
       </header>
     )

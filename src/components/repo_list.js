@@ -7,10 +7,12 @@ import Repo from '../models/repo';
 import RepoItem from './repo_item';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { RepoStoreInterface } from '../stores/repo_store';
+import { PullRequestStoreInterface } from '../stores/pull_request_store';
 
 type Props = {
   store: RepoStoreInterface,
   issueStore: IssueStoreInterface,
+  pullRequestStore: PullRequestStoreInterface,
 };
 
 type State = {
@@ -43,6 +45,7 @@ class RepoList extends React.Component<Props, State> {
           key={repo.key}
           repo={repo}
           issueStore={this.props.issueStore}
+          pullRequestStore={this.props.pullRequestStore}
         />
       ));
     }

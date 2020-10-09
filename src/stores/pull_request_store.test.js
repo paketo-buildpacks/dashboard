@@ -1,16 +1,16 @@
 // @flow
 
-import IssueStore from './issue_store';
+import PullRequestStore from './pull_request_store';
 import GitHubClient from '../fakes/github_client';
-import Issue from '../models/issue';
+import PullRequest from '../models/pull_request';
 
-describe('IssueStore', () => {
-  let store: IssueStore;
+describe('PullRequestStore', () => {
+  let store: PullRequestStore;
   let client: GitHubClient;
 
   beforeEach(() => {
     client = new GitHubClient();
-    store = new IssueStore({ client: client });
+    store = new PullRequestStore({ client: client });
   });
 
   describe('list', () => {
@@ -23,11 +23,10 @@ describe('IssueStore', () => {
             },
             {
               number: 2,
-              pull_request: {},
             },
           ],
           headers: {
-            link: '</repos/some-org/some-repo/issues?page=2>; rel="next", </last-url>; rel="last"',
+            link: '</repos/some-org/some-repo/pulls?page=2>; rel="next", </last-url>; rel="last"',
           },
         },
         {
@@ -39,27 +38,28 @@ describe('IssueStore', () => {
           headers: {
             link: null,
           },
-        }
-      ]
+        },
+      ];
     });
 
-    it('returns a list of issues', async () => {
-      const issues = await store.list('some-org/some-repo');
+    it('returns a list of pull requests', async () => {
+      const pullRequests = await store.list('some-org/some-repo');
 
-      expect(issues).toEqual([
-        new Issue({ number: 1 }),
-        new Issue({ number: 3 }),
+      expect(pullRequests).toEqual([
+        new PullRequest({ number: 1 }),
+        new PullRequest({ number: 2 }),
+        new PullRequest({ number: 3 }),
       ]);
 
       expect(client.doCall.callCount).toEqual(2);
       expect(client.doCall.receives.requests).toHaveLength(2);
       expect(client.doCall.receives.requests[0]).toEqual({
         method: 'GET',
-        path: '/repos/some-org/some-repo/issues',
+        path: '/repos/some-org/some-repo/pulls',
       });
       expect(client.doCall.receives.requests[1]).toEqual({
         method: 'GET',
-        path: '/repos/some-org/some-repo/issues?page=2',
+        path: '/repos/some-org/some-repo/pulls?page=2',
       });
     });
   });

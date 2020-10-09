@@ -6,17 +6,20 @@ import Repo from '../models/repo';
 import RepoList from './repo_list';
 import RepoStore from '../fakes/repo_store';
 import IssueStore from '../fakes/issue_store';
+import PullRequestStore from '../fakes/pull_request_store';
 
 describe('RepoList', () => {
   let result, resolve
   let store: RepoStore;
   let issueStore: IssueStore;
+  let pullRequestStore: PullRequestStore;
 
   beforeEach(() => {
     store = new RepoStore();
     store.listCall.returns.repos = new Promise((res, rej) => { resolve = res; });
 
     issueStore = new IssueStore();
+    pullRequestStore = new PullRequestStore();
   });
 
   describe("when the promise is not resolved", () => {
@@ -25,6 +28,7 @@ describe('RepoList', () => {
         <RepoList
           store={store}
           issueStore={issueStore}
+          pullRequestStore={pullRequestStore}
         />
       );
     });
@@ -53,6 +57,7 @@ describe('RepoList', () => {
         <RepoList
           store={store}
           issueStore={issueStore}
+          pullRequestStore={pullRequestStore}
         />
       );
     });

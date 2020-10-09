@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import RepoItem from './repo_item';
 import Repo from '../models/repo';
 import IssueStore from '../fakes/issue_store';
+import PullRequestStore from '../fakes/pull_request_store';
 
 describe('RepoItem', () => {
   let result;
@@ -16,11 +17,13 @@ describe('RepoItem', () => {
     });
 
     const issueStore: IssueStore = new IssueStore();
+    const pullRequestStore: PullRequestStore = new PullRequestStore();
 
     result = render(
       <RepoItem
         repo={repo}
         issueStore={issueStore}
+        pullRequestStore={pullRequestStore}
       />
     );
   });
@@ -38,5 +41,11 @@ describe('RepoItem', () => {
     const issueCount = result.getByRole('generic', { name: 'issue-count' });
 
     expect(issueCount).toBeInTheDocument();
+  });
+
+  it('renders the number of open pull requests', () => {
+    const pullRequestCount = result.getByRole('generic', { name: 'pull-request-count' });
+
+    expect(pullRequestCount).toBeInTheDocument();
   });
 });

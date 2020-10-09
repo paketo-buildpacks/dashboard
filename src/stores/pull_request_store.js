@@ -1,22 +1,22 @@
 // @flow
 
-import Issue from '../models/issue';
+import PullRequest from '../models/pull_request';
 import { GitHubClientInterface, type GitHubClientResponse } from '../github/client';
 
 type Props = {
   client: GitHubClientInterface,
 };
 
-export default class IssueStore {
+export default class PullRequestStore {
   client: GitHubClientInterface;
 
   constructor(props: Props) {
     this.client = props.client;
   }
 
-  async list(repo: string): Promise<Issue[]> {
-    let path: string = `/repos/${repo}/issues`;
-    let issues: Issue[] = [];
+  async list(repo: string): Promise<PullRequest[]> {
+    let path: string = `/repos/${repo}/pulls`;
+    let pullRequests: PullRequest[] = [];
 
     while (path) {
       const response: GitHubClientResponse = await this.client.do({
@@ -24,21 +24,19 @@ export default class IssueStore {
         path: path,
       });
 
-      for (const issue of response.data) {
-        if (!issue.pull_request) {
-          issues.push(new Issue({
-            number: issue.number,
-          }));
-        }
+      for (const pullRequest of response.data) {
+        pullRequests.push(new PullRequest({
+          number: pullRequest.number,
+        }));
       }
 
       path = ((response.headers.link || "").match( /<([^>]+)>;\s*rel="next"/) || [])[1];
     }
 
-    return issues;
+    return pullRequests;
   }
 };
 
-export interface IssueStoreInterface {
-  list(repo: string): Promise<Issue[]>;
+export interface PullRequestStoreInterface {
+  list(repo: string): Promise<PullRequest[]>;
 };

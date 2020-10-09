@@ -9,14 +9,16 @@ import Header from './header';
 import Login from './login';
 import RepoList from './repo_list';
 
+import { GitHubClientInterface } from '../github/client';
 import { RepoStoreInterface } from '../stores/repo_store';
 import { IssueStoreInterface } from '../stores/issue_store';
-import { GitHubClientInterface } from '../github/client';
+import { PullRequestStoreInterface } from '../stores/pull_request_store';
 
 type Props = {
+  gitHubClient: GitHubClientInterface,
   repoStore: RepoStoreInterface,
   issueStore: IssueStoreInterface,
-  gitHubClient: GitHubClientInterface,
+  pullRequestStore: PullRequestStoreInterface,
 };
 
 type State = {
@@ -46,6 +48,7 @@ class App extends React.Component<Props, State> {
       body = <RepoList
         store={this.props.repoStore}
         issueStore={this.props.issueStore}
+        pullRequestStore={this.props.pullRequestStore}
       />
     }
 

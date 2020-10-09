@@ -8,23 +8,27 @@ import App from './app';
 import GitHubClient from '../fakes/github_client';
 import RepoStore from '../fakes/repo_store';
 import IssueStore from '../fakes/issue_store';
+import PullRequestStore from '../fakes/pull_request_store';
 
 describe('App', () => {
   let result;
   let gitHubClient: GitHubClient;
   let repoStore: RepoStore;
   let issueStore: IssueStore;
+  let pullRequestStore: PullRequestStore;
 
   beforeEach(() => {
     gitHubClient = new GitHubClient();
     repoStore = new RepoStore();
     issueStore = new IssueStore();
+    pullRequestStore = new PullRequestStore();
 
     result = render(
       <App
         gitHubClient={gitHubClient}
         repoStore={repoStore}
         issueStore={issueStore}
+        pullRequestStore={pullRequestStore}
       />
     );
   });

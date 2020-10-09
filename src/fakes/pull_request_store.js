@@ -3,8 +3,9 @@
 import PullRequest from '../models/pull_request';
 
 type ListCall = {
+  callCount: number,
   returns: {
-    pullRequests: Promise<PullRequest[]>,
+    promises: Promise<PullRequest[]>[],
   },
 };
 
@@ -13,13 +14,22 @@ export default class IssueStore {
 
   constructor() {
     this.listCall = {
+      callCount: 0,
       returns: {
-        pullRequests: Promise.resolve([]),
+        promises: [],
       },
     };
   }
 
   list(): Promise<PullRequest[]> {
-    return this.listCall.returns.pullRequests;
+    this.listCall.callCount++;
+
+    let promise: Promise<PullRequest[]> = Promise.resolve([]);
+
+    if (this.listCall.returns.promises[this.listCall.callCount-1]) {
+      promise = this.listCall.returns.promises[this.listCall.callCount-1]
+    }
+
+    return promise;
   }
 }

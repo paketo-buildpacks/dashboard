@@ -30,14 +30,40 @@ class RepoList extends React.Component<Props, State> {
     };
   }
 
-  async componentDidMount() {
-    const repos = await this.props.store.list();
+  componentDidMount() {
+    Promise.all([
+      this.props.store.list('paketo-buildpacks'),
+      this.props.store.list('paketo-community'),
+    ]).then((results) => {
+      let repos: Repo[] = [];
 
-    this.setState({ loading: false, repos: repos });
+      for (const result of results) {
+        for (const repo of result) {
+          repos.push(repo);
+        }
+      }
+
+      repos.sort((a: Repo, b: Repo): number => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+
+        if (nameA < nameB) {
+          return -1;
+        }
+
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        return 0;
+      });
+
+      this.setState({ loading: false, repos: repos });
+    });
   }
 
   render(): Node {
-    let items = (<div className="loading">Loading...</div>);
+    let items = (<div className="loading">...</div>);
 
     if (!this.state.loading) {
       items = this.state.repos.map((repo) => (

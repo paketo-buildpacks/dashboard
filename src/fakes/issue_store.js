@@ -3,8 +3,9 @@
 import Issue from '../models/issue';
 
 type ListCall = {
+  callCount: number,
   returns: {
-    issues: Promise<Issue[]>,
+    promises: Promise<Issue[]>[],
   },
 };
 
@@ -13,13 +14,22 @@ export default class IssueStore {
 
   constructor() {
     this.listCall = {
+      callCount: 0,
       returns: {
-        issues: Promise.resolve([]),
+        promises: [],
       },
     };
   }
 
   list(): Promise<Issue[]> {
-    return this.listCall.returns.issues;
+    this.listCall.callCount++;
+
+    let promise: Promise<Issue[]> = Promise.resolve([]);
+
+    if (this.listCall.returns.promises[this.listCall.callCount-1]) {
+      promise = this.listCall.returns.promises[this.listCall.callCount-1]
+    }
+
+    return promise;
   }
 }

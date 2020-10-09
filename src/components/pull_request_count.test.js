@@ -14,7 +14,7 @@ describe('PullRequestCount', () => {
 
   beforeEach(() => {
     store = new PullRequestStore();
-    store.listCall.returns.pullRequests = new Promise((res, rej) => { resolve = res; });
+    store.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
 
     repo = new Repo({
       name: 'some-org/some-repo',

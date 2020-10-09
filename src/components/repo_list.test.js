@@ -16,7 +16,7 @@ describe('RepoList', () => {
 
   beforeEach(() => {
     store = new RepoStore();
-    store.listCall.returns.repos = new Promise((res, rej) => { resolve = res; });
+    store.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
 
     issueStore = new IssueStore();
     pullRequestStore = new PullRequestStore();
@@ -34,7 +34,7 @@ describe('RepoList', () => {
     });
 
     it('renders loading text', () => {
-      const loading = result.getByText(/Loading.../i);
+      const loading = result.getByText(/.../i);
 
       expect(loading).toBeInTheDocument();
     });

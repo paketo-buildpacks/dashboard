@@ -14,7 +14,7 @@ describe('IssueCount', () => {
 
   beforeEach(() => {
     store = new IssueStore();
-    store.listCall.returns.issues = new Promise((res, rej) => { resolve = res; });
+    store.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
 
     repo = new Repo({
       name: 'some-org/some-repo',

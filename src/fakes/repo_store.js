@@ -3,8 +3,9 @@
 import Repo from '../models/repo';
 
 type ListCall = {
+  callCount: number,
   returns: {
-    repos: Promise<Repo[]>,
+    promises: Promise<Repo[]>[],
   },
 };
 
@@ -13,13 +14,22 @@ export default class RepoStore {
 
   constructor() {
     this.listCall = {
+      callCount: 0,
       returns: {
-        repos: Promise.resolve([]),
+        promises: [],
       },
     };
   }
 
   list(): Promise<Repo[]> {
-    return this.listCall.returns.repos;
+    this.listCall.callCount++;
+
+    let promise: Promise<Repo[]> = Promise.resolve([]);
+
+    if (this.listCall.returns.promises[this.listCall.callCount-1]) {
+      promise = this.listCall.returns.promises[this.listCall.callCount-1]
+    }
+
+    return promise;
   }
 }

@@ -21,18 +21,18 @@ describe('RepoStore', () => {
             {
               id: 1111,
               name: "first-repo",
-              full_name: "paketo-buildpacks/first-repo",
+              full_name: "some-org/first-repo",
               html_url: "first-repo-url",
             },
             {
               id: 2222,
               name: "second-repo",
-              full_name: "paketo-buildpacks/second-repo",
+              full_name: "some-org/second-repo",
               html_url: "second-repo-url",
             },
           ],
           headers: {
-            link: '</orgs/paketo-buildpacks/repos?page=2>; rel="next", </last-url>; rel="last"',
+            link: '</orgs/some-org/repos?page=2>; rel="next", </last-url>; rel="last"',
           },
         },
         {
@@ -40,13 +40,13 @@ describe('RepoStore', () => {
             {
               id: 3333,
               name: "third-repo",
-              full_name: "paketo-buildpacks/third-repo",
+              full_name: "some-org/third-repo",
               html_url: "third-repo-url",
             },
             {
               id: 4444,
               name: "fourth-repo",
-              full_name: "paketo-buildpacks/fourth-repo",
+              full_name: "some-org/fourth-repo",
               html_url: "fourth-repo-url",
             },
           ],
@@ -54,61 +54,40 @@ describe('RepoStore', () => {
             link: null,
           },
         },
-        {
-          data: [
-            {
-              id: 5555,
-              name: "fifth-repo",
-              full_name: "paketo-community/fifth-repo",
-              html_url: "fifth-repo-url",
-            },
-          ],
-          headers: {
-            link: null,
-          },
-        }
       ]
     });
 
     it('returns a list of repositories', async () => {
-      const repos = await store.list();
+      const repos = await store.list('some-org');
 
       expect(repos).toEqual([
         new Repo({
-          name: "paketo-buildpacks/first-repo",
+          name: "some-org/first-repo",
           url: "first-repo-url",
         }),
         new Repo({
-          name: "paketo-buildpacks/fourth-repo",
-          url: "fourth-repo-url",
-        }),
-        new Repo({
-          name: "paketo-buildpacks/second-repo",
+          name: "some-org/second-repo",
           url: "second-repo-url",
         }),
         new Repo({
-          name: "paketo-buildpacks/third-repo",
+          name: "some-org/third-repo",
           url: "third-repo-url",
         }),
         new Repo({
-          name: "paketo-community/fifth-repo",
-          url: "fifth-repo-url",
+          name: "some-org/fourth-repo",
+          url: "fourth-repo-url",
         }),
       ]);
 
-      expect(client.doCall.callCount).toEqual(3);
-      expect(client.doCall.receives.requests).toHaveLength(3);
+      expect(client.doCall.callCount).toEqual(2);
+      expect(client.doCall.receives.requests).toHaveLength(2);
       expect(client.doCall.receives.requests[0]).toEqual({
         method: 'GET',
-        path: '/orgs/paketo-buildpacks/repos',
+        path: '/orgs/some-org/repos',
       });
       expect(client.doCall.receives.requests[1]).toEqual({
         method: 'GET',
-        path: '/orgs/paketo-buildpacks/repos?page=2',
-      });
-      expect(client.doCall.receives.requests[2]).toEqual({
-        method: 'GET',
-        path: '/orgs/paketo-community/repos',
+        path: '/orgs/some-org/repos?page=2',
       });
     });
   });

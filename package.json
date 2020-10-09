@@ -33,7 +33,8 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "deploy": "yarn install && yarn build && git add -A . && git ci -m 'Build production app' && git push && git subtree push --prefix build origin gh-pages"
   },
   "version": "0.1.0"
 }

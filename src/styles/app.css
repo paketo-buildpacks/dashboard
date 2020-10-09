@@ -4,8 +4,9 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
-  background: #EFEFEF;
-  box-shadow: 0 4px 10px #BBB;
+  border-bottom: 1px solid #DDD;
+  box-shadow: 0 0 10px #EEE;
+  background: #FFF;
 }
 
 .app header .logo {

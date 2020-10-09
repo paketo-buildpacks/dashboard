@@ -29,7 +29,7 @@ describe('RepoItem', () => {
   });
 
   it('renders the name of the repository as a link', () => {
-    const nameLink = result.getByText(/some-org\/some-repo/i);
+    const nameLink = result.getByText(/some-repo/i);
 
     expect(nameLink).toBeInTheDocument();
     expect(nameLink).toHaveAttribute('href', 'some-url');

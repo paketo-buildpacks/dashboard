@@ -4,6 +4,18 @@
   align-items: center;
 }
 
-.issue-count .count {
-  margin-left: 5px;
+.issue-count .octicon {
+  margin-right: 5px;
+}
+
+.issue-count.low {
+  color: #43A636;
+}
+
+.issue-count.medium {
+  color: #E6BC4B;
+}
+
+.issue-count.high {
+  color: #E64B4B;
 }

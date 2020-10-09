@@ -1,13 +1,25 @@
 .repo-item {
   min-width: 200px;
-  box-shadow: 0 4px 10px #BBB;
+  border-radius: 4px;
   margin: 5px;
+  overflow: hidden;
+  border: 1px solid #DDD;
+  box-shadow: 0 0 10px #EEE;
+  background: #FFF;
 }
 
-.repo-item .name {
-  background: #F2F2F2;
+.repo-item .org {
   text-align: center;
-  padding: 10px;
+  padding: 2px;
+  display: block;
+  font-size: 0.6em;
+  color: #6C6C6C;
+}
+
+.repo-item .repo {
+  background: #EDF7FA;
+  text-align: center;
+  padding: 2px;
   display: block;
 }
 

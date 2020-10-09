@@ -4,6 +4,18 @@
   align-items: center;
 }
 
-.pull-request-count .count {
-  margin-left: 5px;
+.pull-request-count .octicon {
+  margin-right: 5px;
+}
+
+.pull-request-count.low {
+  color: #43A636;
+}
+
+.pull-request-count.medium {
+  color: #E6BC4B;
+}
+
+.pull-request-count.high {
+  color: #E64B4B;
 }

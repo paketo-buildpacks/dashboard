@@ -17,14 +17,20 @@ type Props = {
 
 export default class RepoItem extends React.Component<Props> {
   render(): Node {
+    const parts = this.props.repo.name.split('/');
+
+    const org = parts[0];
+    const repo = parts[1];
+
     return (
       <div className="repo-item">
+        <div className="org">{org}</div>
         <a
-          className="name"
+          className="repo"
           href={this.props.repo.url}
           target="_blank"
           rel="noopener noreferrer"
-        >{this.props.repo.name}</a>
+        >{repo}</a>
         <div className="content">
           <IssueCount
             store={this.props.issueStore}

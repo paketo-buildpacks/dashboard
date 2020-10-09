@@ -35,13 +35,28 @@ export default class PullRequestCount extends React.Component<Props, State> {
 
   render(): Node {
     let count: string = '...';
+    let priority: string = 'none';
 
     if (!this.state.loading) {
-      count = `${this.state.pullRequests.length}`;
+      const length = this.state.pullRequests.length;
+
+      if (length > 0 ) {
+        priority = 'low';
+      }
+
+      if (length > 3 ) {
+        priority = 'medium';
+      }
+
+      if (length > 6 ) {
+        priority = 'high';
+      }
+
+      count = `${length}`;
     }
 
     return (
-      <div className='pull-request-count' aria-label='pull-request-count'>
+      <div className={`pull-request-count ${priority}`} aria-label='pull-request-count'>
         <GitPullRequestIcon size={16} />
         <div className='count'>{count}</div>
       </div>

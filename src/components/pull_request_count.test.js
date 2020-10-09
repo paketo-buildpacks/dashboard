@@ -40,25 +40,103 @@ describe('PullRequestCount', () => {
   });
 
   describe('when the promise is resolved', () => {
-    beforeEach(() => {
-      resolve([
-        new PullRequest({ number: 1 }),
-        new PullRequest({ number: 2 }),
-        new PullRequest({ number: 3 }),
-      ]);
+    describe('when there are 0 pull requests', () => {
+      beforeEach(() => {
+        resolve([]);
 
-      result = render(
-        <PullRequestCount
-          store={store}
-          repo={repo}
-        />
-      );
+        result = render(
+          <PullRequestCount
+            store={store}
+            repo={repo}
+          />
+        );
+      });
+
+      it('classifies the priority as low', () => {
+        const count = result.getByRole('generic', { name: 'pull-request-count' });
+
+        expect(count).toHaveTextContent(/0/i);
+        expect(count).toHaveClass('none');
+      });
     });
 
-    it('renders a count of open pull requests', () => {
-      const count = result.getByText(/3/i);
+    describe('when there are less than 4 pull requests', () => {
+      beforeEach(() => {
+        resolve([
+          new PullRequest({ number: 1 }),
+          new PullRequest({ number: 2 }),
+          new PullRequest({ number: 3 }),
+        ]);
 
-      expect(count).toBeInTheDocument();
+        result = render(
+          <PullRequestCount
+            store={store}
+            repo={repo}
+          />
+        );
+      });
+
+      it('classifies the priority as low', () => {
+        const count = result.getByRole('generic', { name: 'pull-request-count' });
+
+        expect(count).toHaveTextContent(/3/i);
+        expect(count).toHaveClass('low');
+      });
+    });
+
+    describe('when there are less than 7 pull requests', () => {
+      beforeEach(() => {
+        resolve([
+          new PullRequest({ number: 1 }),
+          new PullRequest({ number: 2 }),
+          new PullRequest({ number: 3 }),
+          new PullRequest({ number: 4 }),
+          new PullRequest({ number: 5 }),
+        ]);
+
+        result = render(
+          <PullRequestCount
+            store={store}
+            repo={repo}
+          />
+        );
+      });
+
+      it('classifies the priority as medium', () => {
+        const count = result.getByRole('generic', { name: 'pull-request-count' });
+
+        expect(count).toHaveTextContent(/5/i);
+        expect(count).toHaveClass('medium');
+      });
+    });
+
+    describe('when there are 7 or more pull requests', () => {
+      beforeEach(() => {
+        resolve([
+          new PullRequest({ number: 1 }),
+          new PullRequest({ number: 2 }),
+          new PullRequest({ number: 3 }),
+          new PullRequest({ number: 4 }),
+          new PullRequest({ number: 5 }),
+          new PullRequest({ number: 6 }),
+          new PullRequest({ number: 7 }),
+          new PullRequest({ number: 8 }),
+        ]);
+
+        result = render(
+          <PullRequestCount
+            store={store}
+            repo={repo}
+          />
+        );
+      });
+
+      it('classifies the priority as high', () => {
+        const count = result.getByRole('generic', { name: 'pull-request-count' });
+
+        expect(count).toHaveTextContent(/8/i);
+        expect(count).toHaveClass('high');
+      });
     });
   });
 });

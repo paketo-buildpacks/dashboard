@@ -35,13 +35,28 @@ export default class IssueCount extends React.Component<Props, State> {
 
   render(): Node {
     let count: Node = '...';
+    let priority: string = 'none';
 
     if (!this.state.loading) {
-      count = `${this.state.issues.length}`;
+      const length = this.state.issues.length;
+
+      if (length > 0) {
+        priority = 'low';
+      }
+
+      if (length > 3) {
+        priority = 'medium';
+      }
+
+      if (length > 6) {
+        priority = 'high';
+      }
+
+      count = `${length}`;
     }
 
     return (
-      <div className='issue-count' aria-label='issue-count'>
+      <div className={`issue-count ${priority}`} aria-label='issue-count'>
         <IssueOpenedIcon size={16} />
         <div className='count'>{count}</div>
       </div>

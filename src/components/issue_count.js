@@ -28,6 +28,16 @@ export default class IssueCount extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    this.load();
+  }
+
+  componentDidUpdate(previousProps: Props) {
+    if (this.props.repo.openIssuesCount !== previousProps.repo.openIssuesCount) {
+      this.load();
+    }
+  }
+
+  load() {
     this.props.store.list(this.props.repo.name).then((issues) => {
       this.setState({ loading: false, issues: issues });
     });

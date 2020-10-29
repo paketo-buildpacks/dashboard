@@ -28,6 +28,16 @@ export default class PullRequestCount extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    this.load();
+  }
+
+  componentDidUpdate(previousProps: Props) {
+    if (this.props.repo.openIssuesCount !== previousProps.repo.openIssuesCount) {
+      this.load();
+    }
+  }
+
+  load() {
     this.props.store.list(this.props.repo.name).then((pullRequests) => {
       this.setState({ loading: false, pullRequests: pullRequests });
     });

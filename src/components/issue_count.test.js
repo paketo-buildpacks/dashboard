@@ -19,6 +19,7 @@ describe('IssueCount', () => {
     repo = new Repo({
       name: 'some-org/some-repo',
       url: 'some-url',
+      openIssuesCount: 3,
     });
   });
 

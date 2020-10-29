@@ -8,6 +8,7 @@ import RepoItem from './repo_item';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { RepoStoreInterface } from '../stores/repo_store';
 import { PullRequestStoreInterface } from '../stores/pull_request_store';
+import { SyncIcon } from '@primer/octicons-react';
 
 type Props = {
   store: RepoStoreInterface,
@@ -21,6 +22,8 @@ type State = {
 };
 
 class RepoList extends React.Component<Props, State> {
+  handleReload: SyntheticEvent<HTMLButtonElement> => void;
+
   constructor(props: Props) {
     super(props);
 
@@ -28,9 +31,15 @@ class RepoList extends React.Component<Props, State> {
       loading: true,
       repos: [],
     };
+
+    this.handleReload = this.handleReload.bind(this);
   }
 
   componentDidMount() {
+    this.load();
+  }
+
+  load() {
     Promise.all([
       this.props.store.list('paketo-buildpacks'),
       this.props.store.list('paketo-community'),
@@ -62,6 +71,10 @@ class RepoList extends React.Component<Props, State> {
     });
   }
 
+  handleReload(event: SyntheticEvent<HTMLButtonElement>): void {
+    this.load();
+  }
+
   render(): Node {
     let items = (<div className="loading">...</div>);
 
@@ -78,7 +91,15 @@ class RepoList extends React.Component<Props, State> {
 
     return (
       <div className="repo-list">
-        {items}
+        <div className="title">
+          <h2>Overview</h2>
+          <button onClick={this.handleReload}>
+            <SyncIcon size={16} />
+          </button>
+        </div>
+        <div className="list">
+          {items}
+        </div>
       </div>
     );
   }

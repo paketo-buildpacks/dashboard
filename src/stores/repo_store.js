@@ -27,7 +27,8 @@ export default class RepoStore {
       for (const repo of response.data) {
         repos.push(new Repo({
           name: repo.full_name,
-           url: repo.html_url,
+          url: repo.html_url,
+          openIssuesCount: repo.open_issues_count,
         }));
       }
 

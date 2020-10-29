@@ -1,12 +1,28 @@
-.repo-list {
+.repo-list .title {
   display: flex;
-  flex-flow: row wrap;
-  align-content: space-between;
   justify-content: center;
+}
+
+.repo-list .title h2 {
+  margin: 0;
+  font-weight: 100;
+}
+
+.repo-list .title button {
+  background: transparent;
+  padding: 0;
+  color: #AAA;
 }
 
 .repo-list .loading {
   width: 100%;
   text-align: center;
   color: #ADADAD;
+}
+
+.repo-list .list {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: center;
 }

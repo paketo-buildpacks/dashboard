@@ -23,12 +23,14 @@ describe('RepoStore', () => {
               name: "first-repo",
               full_name: "some-org/first-repo",
               html_url: "first-repo-url",
+              open_issues_count: 1,
             },
             {
               id: 2222,
               name: "second-repo",
               full_name: "some-org/second-repo",
               html_url: "second-repo-url",
+              open_issues_count: 2,
             },
           ],
           headers: {
@@ -42,12 +44,14 @@ describe('RepoStore', () => {
               name: "third-repo",
               full_name: "some-org/third-repo",
               html_url: "third-repo-url",
+              open_issues_count: 3,
             },
             {
               id: 4444,
               name: "fourth-repo",
               full_name: "some-org/fourth-repo",
               html_url: "fourth-repo-url",
+              open_issues_count: 4,
             },
           ],
           headers: {
@@ -64,18 +68,22 @@ describe('RepoStore', () => {
         new Repo({
           name: "some-org/first-repo",
           url: "first-repo-url",
+          openIssuesCount: 1,
         }),
         new Repo({
           name: "some-org/second-repo",
           url: "second-repo-url",
+          openIssuesCount: 2,
         }),
         new Repo({
           name: "some-org/third-repo",
           url: "third-repo-url",
+          openIssuesCount: 3,
         }),
         new Repo({
           name: "some-org/fourth-repo",
           url: "fourth-repo-url",
+          openIssuesCount: 4,
         }),
       ]);
 

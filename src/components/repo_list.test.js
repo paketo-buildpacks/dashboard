@@ -34,7 +34,7 @@ describe('RepoList', () => {
     });
 
     it('renders loading text', () => {
-      const loading = result.getByText(/.../i);
+      const loading = result.getByText(/\.\.\./i);
 
       expect(loading).toBeInTheDocument();
     });
@@ -46,10 +46,12 @@ describe('RepoList', () => {
         new Repo({
           name: 'First Repository',
           url: 'first-url',
+          openIssuesCount: 1,
         }),
         new Repo({
           name: 'Second Repository',
           url: 'second-url',
+          openIssuesCount: 2,
         }),
       ]);
 

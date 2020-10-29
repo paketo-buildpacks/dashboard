@@ -14,6 +14,7 @@ describe('RepoItem', () => {
     const repo: Repo = new Repo({
       name: 'some-org/some-repo',
       url: 'some-url',
+      openIssuesCount: 3,
     });
 
     const issueStore: IssueStore = new IssueStore();

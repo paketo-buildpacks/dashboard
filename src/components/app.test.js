@@ -10,6 +10,7 @@ import GitHubClient from '../fakes/github_client';
 import RepoStore from '../fakes/repo_store';
 import IssueStore from '../fakes/issue_store';
 import PullRequestStore from '../fakes/pull_request_store';
+import Timer from '../fakes/timer';
 
 describe('App', () => {
   let result;
@@ -17,12 +18,14 @@ describe('App', () => {
   let repoStore: RepoStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
+  let timer: Timer;
 
   beforeEach(() => {
     gitHubClient = new GitHubClient();
     repoStore = new RepoStore();
     issueStore = new IssueStore();
     pullRequestStore = new PullRequestStore();
+    timer = new Timer();
 
     result = render(
       <MemoryRouter>
@@ -31,6 +34,7 @@ describe('App', () => {
           repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
+          timer={timer}
         />
       </MemoryRouter>
     );

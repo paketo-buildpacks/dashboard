@@ -8,12 +8,14 @@ import RepoItem from './repo_item';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { RepoStoreInterface } from '../stores/repo_store';
 import { PullRequestStoreInterface } from '../stores/pull_request_store';
+import { TimerInterface } from '../lib/timer';
 import { SyncIcon } from '@primer/octicons-react';
 
 type Props = {
   store: RepoStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
+  timer: TimerInterface,
 };
 
 type State = {
@@ -23,6 +25,7 @@ type State = {
 
 class RepoList extends React.Component<Props, State> {
   handleReload: SyntheticEvent<HTMLButtonElement> => void;
+  interval: number;
 
   constructor(props: Props) {
     super(props);
@@ -36,6 +39,15 @@ class RepoList extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    this.load();
+    this.interval = this.props.timer.setInterval(this.load.bind(this), 900000);
+  }
+
+  componentWillUnmount() {
+    this.props.timer.clearInterval(this.interval);
+  }
+
+  handleReload(event: SyntheticEvent<HTMLButtonElement>): void {
     this.load();
   }
 
@@ -69,10 +81,6 @@ class RepoList extends React.Component<Props, State> {
 
       this.setState({ loading: false, repos: repos });
     });
-  }
-
-  handleReload(event: SyntheticEvent<HTMLButtonElement>): void {
-    this.load();
   }
 
   render(): Node {

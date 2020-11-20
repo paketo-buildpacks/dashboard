@@ -15,12 +15,14 @@ import { GitHubClientInterface } from '../github/client';
 import { RepoStoreInterface } from '../stores/repo_store';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { PullRequestStoreInterface } from '../stores/pull_request_store';
+import { TimerInterface } from '../lib/timer';
 
 type Props = {
   gitHubClient: GitHubClientInterface,
   repoStore: RepoStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
+  timer: TimerInterface,
 };
 
 type State = {
@@ -68,6 +70,7 @@ class App extends React.Component<Props, State> {
                 store={this.props.repoStore}
                 issueStore={this.props.issueStore}
                 pullRequestStore={this.props.pullRequestStore}
+                timer={this.props.timer}
               />
             </PrivateRoute>
 

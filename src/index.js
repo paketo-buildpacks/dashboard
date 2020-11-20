@@ -18,6 +18,7 @@ const gitHubClient = new GitHubClient({ storage: storage });
 const repoStore = new RepoStore({ client: gitHubClient });
 const issueStore = new IssueStore({ client: gitHubClient });
 const pullRequestStore = new PullRequestStore({ client: gitHubClient });
+const timer = window;
 
 ReactDOM.render(
   <React.StrictMode>
@@ -27,6 +28,7 @@ ReactDOM.render(
         repoStore={repoStore}
         issueStore={issueStore}
         pullRequestStore={pullRequestStore}
+        timer={timer}
       />
     </BrowserRouter>
   </React.StrictMode>,

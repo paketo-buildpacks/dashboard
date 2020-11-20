@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3d40cd7e346b33926b98200c453ce5e5",
+    "revision": "6a1947a2b085390fcf7e3c0918580a49",
     "url": "/paketo-dashboard/index.html"
   },
   {
-    "revision": "7f0dfe9b46e39a0b27e6",
+    "revision": "e7d0215c9673f62e771b",
     "url": "/paketo-dashboard/static/css/main.95205505.chunk.css"
   },
   {
-    "revision": "ff6d91c57670c3f20eaa",
-    "url": "/paketo-dashboard/static/js/2.9f88f077.chunk.js"
+    "revision": "8e486997a13e8bd9f5f8",
+    "url": "/paketo-dashboard/static/js/2.df7ac221.chunk.js"
   },
   {
     "revision": "b986cfbd79fc62889d6b331db2b22da6",
-    "url": "/paketo-dashboard/static/js/2.9f88f077.chunk.js.LICENSE.txt"
+    "url": "/paketo-dashboard/static/js/2.df7ac221.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7f0dfe9b46e39a0b27e6",
-    "url": "/paketo-dashboard/static/js/main.8e2606bb.chunk.js"
+    "revision": "e7d0215c9673f62e771b",
+    "url": "/paketo-dashboard/static/js/main.ab17b415.chunk.js"
   },
   {
     "revision": "eb4155b0afbe9a210c00",

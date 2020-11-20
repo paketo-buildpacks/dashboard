@@ -2,6 +2,8 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from './private_route';
 
 import '../styles/app.css';
 
@@ -42,21 +44,29 @@ class App extends React.Component<Props, State> {
   }
 
   render(): Node {
-    let body = <Login assignToken={this.assignToken} />;
-
-    if (this.state.authenticated) {
-      body = <RepoList
-        store={this.props.repoStore}
-        issueStore={this.props.issueStore}
-        pullRequestStore={this.props.pullRequestStore}
-      />
-    }
-
     return (
       <div className="app">
         <Header />
         <section className="body">
-          {body}
+          <Switch>
+
+            <Route path="/login" render={({ history, location }) =>
+              <Login
+                assignToken={this.assignToken}
+                history={history}
+                location={location}
+              />}
+            />
+
+            <PrivateRoute path="/" authenticated={this.state.authenticated}>
+              <RepoList
+                store={this.props.repoStore}
+                issueStore={this.props.issueStore}
+                pullRequestStore={this.props.pullRequestStore}
+              />
+            </PrivateRoute>
+
+          </Switch>
         </section>
       </div>
     );

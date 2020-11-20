@@ -5,11 +5,16 @@ import type { Node } from 'react';
 import '../styles/login.css';
 
 type Props = {
-  assignToken: string => void;
+  assignToken: string => void,
+  history: {
+    replace: { pathname: string } => void,
+  },
+  location: { state: { from: { pathname: string } } },
 };
 
 type State = {
   token: string,
+  from: { pathname: string },
 };
 
 class Login extends React.Component<Props, State> {
@@ -19,7 +24,8 @@ class Login extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = { token: '' };
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    this.state = { token: '', from: from };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,6 +40,7 @@ class Login extends React.Component<Props, State> {
     event.preventDefault();
 
     this.props.assignToken(this.state.token);
+    this.props.history.replace(this.state.from);
   }
 
   render(): Node {

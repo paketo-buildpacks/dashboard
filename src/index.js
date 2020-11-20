@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/app';
 
@@ -20,12 +21,14 @@ const pullRequestStore = new PullRequestStore({ client: gitHubClient });
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      gitHubClient={gitHubClient}
-      repoStore={repoStore}
-      issueStore={issueStore}
-      pullRequestStore={pullRequestStore}
-    />
+    <BrowserRouter>
+      <App
+        gitHubClient={gitHubClient}
+        repoStore={repoStore}
+        issueStore={issueStore}
+        pullRequestStore={pullRequestStore}
+      />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

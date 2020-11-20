@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from './app';
 
@@ -24,12 +25,14 @@ describe('App', () => {
     pullRequestStore = new PullRequestStore();
 
     result = render(
-      <App
-        gitHubClient={gitHubClient}
-        repoStore={repoStore}
-        issueStore={issueStore}
-        pullRequestStore={pullRequestStore}
-      />
+      <MemoryRouter>
+        <App
+          gitHubClient={gitHubClient}
+          repoStore={repoStore}
+          issueStore={issueStore}
+          pullRequestStore={pullRequestStore}
+        />
+      </MemoryRouter>
     );
   });
 

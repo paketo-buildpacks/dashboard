@@ -20,6 +20,7 @@
     "flow-bin": "^0.134.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "5.2.0",
     "react-scripts": "3.4.3"
   },
   "eslintConfig": {
@@ -30,11 +31,11 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
+    "deploy": "yarn install && yarn build && git add -A . && git ci -m 'Build production app' && git push && git subtree push --prefix build origin gh-pages",
     "eject": "react-scripts eject",
     "flow": "flow",
     "start": "react-scripts start",
-    "test": "react-scripts test",
-    "deploy": "yarn install && yarn build && git add -A . && git ci -m 'Build production app' && git push && git subtree push --prefix build origin gh-pages"
+    "test": "react-scripts test"
   },
   "version": "0.1.0"
 }

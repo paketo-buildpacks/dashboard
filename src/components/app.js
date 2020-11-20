@@ -44,13 +44,18 @@ class App extends React.Component<Props, State> {
   }
 
   render(): Node {
+    let root = "";
+    if (process.env.PUBLIC_URL) {
+      root = process.env.PUBLIC_URL;
+    }
+
     return (
       <div className="app">
         <Header />
         <section className="body">
           <Switch>
 
-            <Route path="/login" render={({ history, location }) =>
+            <Route path={`${root}/login`} render={({ history, location }) =>
               <Login
                 assignToken={this.assignToken}
                 history={history}
@@ -58,7 +63,7 @@ class App extends React.Component<Props, State> {
               />}
             />
 
-            <PrivateRoute path="/" authenticated={this.state.authenticated}>
+            <PrivateRoute path={`${root}/`} authenticated={this.state.authenticated}>
               <RepoList
                 store={this.props.repoStore}
                 issueStore={this.props.issueStore}

@@ -1,8 +1,8 @@
 // @flow
 
-type Props = {
+type Props = {|
   number: number,
-};
+|};
 
 export default class Issue {
   number: number;

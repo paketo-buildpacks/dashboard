@@ -4,37 +4,41 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import App from './app';
+import App from '.';
 
-import GitHubClient from '../fakes/github_client';
 import RepoStore from '../fakes/repo_store';
 import IssueStore from '../fakes/issue_store';
 import PullRequestStore from '../fakes/pull_request_store';
 import Timer from '../fakes/timer';
+import Cache from '../fakes/cache';
+import Storage from '../fakes/storage';
 
 describe('App', () => {
   let result;
-  let gitHubClient: GitHubClient;
   let repoStore: RepoStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
   let timer: Timer;
+  let cache: Cache;
+  let storage: Storage;
 
   beforeEach(() => {
-    gitHubClient = new GitHubClient();
     repoStore = new RepoStore();
     issueStore = new IssueStore();
     pullRequestStore = new PullRequestStore();
     timer = new Timer();
+    cache = new Cache();
+    storage = new Storage();
 
     result = render(
       <MemoryRouter>
         <App
-          gitHubClient={gitHubClient}
           repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}
+          cache={cache}
+          storage={storage}
         />
       </MemoryRouter>
     );
@@ -81,7 +85,7 @@ describe('App', () => {
     });
 
     it('assigns the token into github client', () => {
-      expect(gitHubClient.authenticated()).toEqual(true);
+      expect(storage.getItem('token')).toEqual('some-token');
     });
   });
 });

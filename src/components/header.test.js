@@ -2,13 +2,30 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Header from './header';
+import { MemoryRouter, Route, Switch } from 'react-router-dom';
 
 describe('Header', () => {
   let result;
 
   beforeEach(() => {
-    result = render(<Header />);
+    result = render(
+      <MemoryRouter initialEntries={["/some/other/page"]}>
+        <Header />
+        <Switch>
+          <Route path="/some/other/page">
+            <div>Some Other Page</div>
+          </Route>
+          <Route path="/issues">
+            <div>Issues Page</div>
+          </Route>
+          <Route path="/">
+            <div>Homepage</div>
+          </Route>
+        </Switch>
+      </MemoryRouter>
+    );
   });
 
   it('renders the header text', () => {
@@ -21,5 +38,33 @@ describe('Header', () => {
     const logo = result.getByAltText(/logo/i);
 
     expect(logo).toBeInTheDocument();
+  });
+
+  describe('when clicking the logo', () => {
+    beforeEach(() => {
+      const logo = result.getByAltText(/logo/i);
+
+      userEvent.click(logo);
+    });
+
+    it('links to the homepage', () => {
+      const homepage = result.getByText(/Homepage/i);
+
+      expect(homepage).toBeInTheDocument();
+    });
+  });
+
+  describe('when clicking the issues link', () => {
+    beforeEach(() => {
+      const issues = result.getByText(/Issues/i);
+
+      userEvent.click(issues);
+    });
+
+    it('links to the homepage', () => {
+      const issues = result.getByText(/Issues Page/i);
+
+      expect(issues).toBeInTheDocument();
+    });
   });
 });

@@ -1,17 +1,17 @@
 // @flow
 
 import Repo from '../models/repo';
-import { GitHubClientInterface, type GitHubClientResponse } from '../github/client';
+import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
-type Props = {
+type Props = {|
   client: GitHubClientInterface,
-};
+|};
 
 export default class RepoStore {
-  client: GitHubClientInterface;
+  props: Props;
 
   constructor(props: Props) {
-    this.client = props.client;
+    this.props = props;
   }
 
   async list(org: string): Promise<Repo[]> {
@@ -19,7 +19,7 @@ export default class RepoStore {
     let path: string = `/orgs/${org}/repos`;
 
     while (path) {
-      const response: GitHubClientResponse = await this.client.do({
+      const response: GitHubClientResponse = await this.props.client.do({
         method: 'GET',
         path: path
       });

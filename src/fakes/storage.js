@@ -1,6 +1,6 @@
 // @flow
 
-export default class LocalStorage {
+export default class Storage {
   values: { [key: string]: string };
 
   constructor() {

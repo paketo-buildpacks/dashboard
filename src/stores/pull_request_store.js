@@ -1,11 +1,11 @@
 // @flow
 
 import PullRequest from '../models/pull_request';
-import { GitHubClientInterface, type GitHubClientResponse } from '../github/client';
+import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
-type Props = {
+type Props = {|
   client: GitHubClientInterface,
-};
+|};
 
 export default class PullRequestStore {
   client: GitHubClientInterface;

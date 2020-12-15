@@ -2,19 +2,23 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import PullRequest from '../models/pull_request';
-import Repo from '../models/repo';
+import PullRequest from '../../models/pull_request';
+import Repo from '../../models/repo';
 import PullRequestCount from './pull_request_count';
-import PullRequestStore from '../fakes/pull_request_store';
+import PullRequestStore from '../../fakes/pull_request_store';
+import Cache from '../../fakes/cache';
 
 describe('PullRequestCount', () => {
   let result, resolve;
   let store: PullRequestStore;
+  let cache: Cache;
   let repo: Repo;
 
   beforeEach(() => {
     store = new PullRequestStore();
     store.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
+
+    cache = new Cache();
 
     repo = new Repo({
       name: 'some-org/some-repo',
@@ -27,14 +31,15 @@ describe('PullRequestCount', () => {
     beforeEach(() => {
       result = render(
         <PullRequestCount
-          store={store}
           repo={repo}
+          store={store}
+          cache={cache}
         />
       );
     });
 
-    it('renders loading text', () => {
-      const loading = result.getByText(/.../i);
+    it('renders a zero count', () => {
+      const loading = result.getByText(/0/i);
 
       expect(loading).toBeInTheDocument();
     });
@@ -47,8 +52,9 @@ describe('PullRequestCount', () => {
 
         result = render(
           <PullRequestCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });
@@ -71,8 +77,9 @@ describe('PullRequestCount', () => {
 
         result = render(
           <PullRequestCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });
@@ -97,8 +104,9 @@ describe('PullRequestCount', () => {
 
         result = render(
           <PullRequestCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });
@@ -126,8 +134,9 @@ describe('PullRequestCount', () => {
 
         result = render(
           <PullRequestCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });

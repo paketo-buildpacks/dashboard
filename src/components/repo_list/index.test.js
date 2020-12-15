@@ -2,12 +2,14 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import Repo from '../models/repo';
-import RepoList from './repo_list';
-import RepoStore from '../fakes/repo_store';
-import IssueStore from '../fakes/issue_store';
-import PullRequestStore from '../fakes/pull_request_store';
-import Timer from '../fakes/timer';
+import Repo from '../../models/repo';
+import RepoList from './index';
+
+import RepoStore from '../../fakes/repo_store';
+import IssueStore from '../../fakes/issue_store';
+import PullRequestStore from '../../fakes/pull_request_store';
+import Timer from '../../fakes/timer';
+import Cache from '../../fakes/cache';
 
 describe('RepoList', () => {
   let result, resolve;
@@ -15,6 +17,7 @@ describe('RepoList', () => {
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
   let timer: Timer;
+  let cache: Cache;
 
   beforeEach(() => {
     store = new RepoStore();
@@ -25,6 +28,7 @@ describe('RepoList', () => {
 
     issueStore = new IssueStore();
     pullRequestStore = new PullRequestStore();
+    cache = new Cache();
   });
 
   describe('when the promise is not resolved', () => {
@@ -35,6 +39,7 @@ describe('RepoList', () => {
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}
+          cache={cache}
         />
       );
     });
@@ -67,6 +72,7 @@ describe('RepoList', () => {
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}
+          cache={cache}
         />
       );
     });
@@ -101,6 +107,7 @@ describe('RepoList', () => {
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}
+          cache={cache}
         />
       );
 

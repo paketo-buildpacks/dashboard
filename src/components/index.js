@@ -3,7 +3,7 @@
 import React from 'react';
 import type { Node } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import PrivateRoute from './private_route';
+import PrivateRoute from './lib/private_route';
 
 import '../styles/app.css';
 
@@ -11,23 +11,25 @@ import Header from './header';
 import Login from './login';
 import RepoList from './repo_list';
 
-import { GitHubClientInterface } from '../github/client';
 import { RepoStoreInterface } from '../stores/repo_store';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { PullRequestStoreInterface } from '../stores/pull_request_store';
 import { TimerInterface } from '../lib/timer';
+import { CacheInterface } from '../lib/cache';
+import { StorageInterface } from '../lib/storage';
 
-type Props = {
-  gitHubClient: GitHubClientInterface,
+type Props = {|
   repoStore: RepoStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
   timer: TimerInterface,
-};
+  cache: CacheInterface,
+  storage: StorageInterface,
+|};
 
-type State = {
+type State = {|
   authenticated: boolean,
-};
+|};
 
 class App extends React.Component<Props, State> {
   assignToken: string => void;
@@ -35,18 +37,18 @@ class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = { authenticated: this.props.gitHubClient.authenticated() };
+    this.state = { authenticated: !!this.props.storage.getItem('token') };
 
     this.assignToken = this.assignToken.bind(this);
   }
 
   assignToken(token: string): void {
-    this.props.gitHubClient.assignToken(token);
-    this.setState({ authenticated: this.props.gitHubClient.authenticated() });
+    this.props.storage.setItem('token', token);
+    this.setState({ authenticated: !!this.props.storage.getItem('token') });
   }
 
   render(): Node {
-    let root = "";
+    let root = '';
     if (process.env.PUBLIC_URL) {
       root = process.env.PUBLIC_URL;
     }
@@ -71,6 +73,7 @@ class App extends React.Component<Props, State> {
                 issueStore={this.props.issueStore}
                 pullRequestStore={this.props.pullRequestStore}
                 timer={this.props.timer}
+                cache={this.props.cache}
               />
             </PrivateRoute>
 

@@ -2,19 +2,23 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import Issue from '../models/issue';
-import Repo from '../models/repo';
+import Issue from '../../models/issue';
+import Repo from '../../models/repo';
 import IssueCount from './issue_count';
-import IssueStore from '../fakes/issue_store';
+import IssueStore from '../../fakes/issue_store';
+import Cache from '../../fakes/cache';
 
 describe('IssueCount', () => {
   let result, resolve;
   let store: IssueStore;
+  let cache: Cache;
   let repo: Repo;
 
   beforeEach(() => {
     store = new IssueStore();
     store.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
+
+    cache = new Cache();
 
     repo = new Repo({
       name: 'some-org/some-repo',
@@ -27,14 +31,15 @@ describe('IssueCount', () => {
     beforeEach(() => {
       result = render(
         <IssueCount
-          store={store}
           repo={repo}
+          store={store}
+          cache={cache}
         />
       );
     });
 
-    it('renders loading text', () => {
-      const loading = result.getByText(/.../i);
+    it('renders a 0 count', () => {
+      const loading = result.getByText(/0/i);
 
       expect(loading).toBeInTheDocument();
     });
@@ -47,8 +52,9 @@ describe('IssueCount', () => {
 
         result = render(
           <IssueCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });
@@ -71,8 +77,9 @@ describe('IssueCount', () => {
 
         result = render(
           <IssueCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });
@@ -97,8 +104,9 @@ describe('IssueCount', () => {
 
         result = render(
           <IssueCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });
@@ -126,8 +134,9 @@ describe('IssueCount', () => {
 
         result = render(
           <IssueCount
-            store={store}
             repo={repo}
+            store={store}
+            cache={cache}
           />
         );
       });

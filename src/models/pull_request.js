@@ -1,8 +1,8 @@
 // @flow
 
-type Props = {
+type Props = {|
   number: number,
-};
+|};
 
 export default class PullRequest {
   number: number;

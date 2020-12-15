@@ -1,0 +1,53 @@
+header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid #DDD;
+  box-shadow: 0 0 10px #EEE;
+  background: #FFF;
+}
+
+header .logo {
+  height: 50px;
+}
+
+header a, header a:visited {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: underline #DDD;
+}
+
+header a:hover, header a:focus {
+  text-decoration: underline #AAA;
+}
+
+header a:active {
+  text-decoration: underline #000;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 100;
+}
+
+header h1 a,
+header h1 a:visited,
+header h1 a:hover,
+header h1 a:focus,
+header h1 a:active {
+  text-decoration: none;
+}
+
+header .navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 50px;
+}
+
+header .navigation h3 {
+  margin: 0 10px;
+  font-weight: 100;
+}

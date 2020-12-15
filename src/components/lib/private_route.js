@@ -3,11 +3,11 @@
 import React, { type Node } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-type Props = {
+type Props = {|
   children: Node,
   authenticated: boolean,
   path: string,
-};
+|};
 
 export default class PrivateRoute extends React.Component<Props> {
   render(): Node {

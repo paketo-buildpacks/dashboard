@@ -4,18 +4,18 @@ import React from 'react';
 import type { Node } from 'react';
 import '../styles/login.css';
 
-type Props = {
+type Props = {|
   assignToken: string => void,
   history: {
     replace: { pathname: string } => void,
   },
   location: { state: { from: { pathname: string } } },
-};
+|};
 
-type State = {
+type State = {|
   token: string,
   from: { pathname: string },
-};
+|};
 
 class Login extends React.Component<Props, State> {
   handleChange: SyntheticEvent<HTMLInputElement> => void;
@@ -24,7 +24,12 @@ class Login extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    let root = '/';
+    if (process.env.PUBLIC_URL) {
+      root = process.env.PUBLIC_URL;
+    }
+
+    const { from } = this.props.location.state || { from: { pathname: root } };
     this.state = { token: '', from: from };
 
     this.handleChange = this.handleChange.bind(this);

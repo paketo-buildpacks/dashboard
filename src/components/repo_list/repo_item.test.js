@@ -3,9 +3,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import RepoItem from './repo_item';
-import Repo from '../models/repo';
-import IssueStore from '../fakes/issue_store';
-import PullRequestStore from '../fakes/pull_request_store';
+import Repo from '../../models/repo';
+import IssueStore from '../../fakes/issue_store';
+import PullRequestStore from '../../fakes/pull_request_store';
+import Cache from '../../fakes/cache';
 
 describe('RepoItem', () => {
   let result;
@@ -19,12 +20,14 @@ describe('RepoItem', () => {
 
     const issueStore: IssueStore = new IssueStore();
     const pullRequestStore: PullRequestStore = new PullRequestStore();
+    const cache = new Cache();
 
     result = render(
       <RepoItem
         repo={repo}
         issueStore={issueStore}
         pullRequestStore={pullRequestStore}
+        cache={cache}
       />
     );
   });

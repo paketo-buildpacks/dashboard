@@ -13,6 +13,7 @@ describe('RepoItem', () => {
 
   beforeEach(() => {
     const repo: Repo = new Repo({
+      id: 1234,
       name: 'some-org/some-repo',
       url: 'some-url',
       openIssuesCount: 3,

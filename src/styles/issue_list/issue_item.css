@@ -1,0 +1,52 @@
+.issue-item {
+  margin: 5px;
+  border: 1px solid #EEE;
+  padding: 5px 10px;
+  background: #FFF;
+  box-shadow: 0 0 10px #EEE;
+  border-radius: 4px;
+}
+
+.issue-item .repo {
+  font-size: 0.7em;
+  color: #6C6C6C;
+  margin-bottom: 5px;
+}
+
+.issue-item .content {
+  display: flex;
+  flex-direction: row;
+}
+
+.issue-item .content .identifier {
+  display: flex;
+  flex-direction: row;
+}
+
+.issue-item .content .identifier .number {
+  color: #6C6C6C;
+  margin-right: 5px;
+}
+
+.issue-item .content .comment-count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #6C6C6C;
+  position: absolute;
+  right: 40px;
+}
+
+.issue-item .content .comment-count.none {
+  display: none;
+}
+
+.issue-item .content .comment-count .count {
+  margin-right: 5px;
+}
+
+.issue-item .created-at {
+  font-size: 0.7em;
+  color: #6C6C6C;
+  margin-top: 5px;
+}

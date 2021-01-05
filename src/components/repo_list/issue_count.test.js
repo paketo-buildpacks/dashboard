@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
 import IssueCount from './issue_count';
@@ -21,6 +22,7 @@ describe('IssueCount', () => {
     cache = new Cache();
 
     repo = new Repo({
+      id: 1234,
       name: 'some-org/some-repo',
       url: 'some-url',
       openIssuesCount: 3,
@@ -70,9 +72,30 @@ describe('IssueCount', () => {
     describe('when there are less than 4 issues', () => {
       beforeEach(() => {
         resolve([
-          new Issue({ number: 1 }),
-          new Issue({ number: 2 }),
-          new Issue({ number: 3 }),
+          new Issue({
+            id: 1111,
+            number: 1,
+            title: 'First Issue',
+            url: 'first-url',
+            createdAt: '2001-01-01T01:01:01Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 2222,
+            number: 2,
+            title: 'Second Issue',
+            url: 'second-url',
+            createdAt: '2002-02-02T02:02:02Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 3333,
+            number: 3,
+            title: 'Third Issue',
+            url: 'third-url',
+            createdAt: '2003-03-03T03:03:03Z',
+            commentCount: 0,
+          }),
         ]);
 
         result = render(
@@ -95,11 +118,46 @@ describe('IssueCount', () => {
     describe('when there are less than 7 issues', () => {
       beforeEach(() => {
         resolve([
-          new Issue({ number: 1 }),
-          new Issue({ number: 2 }),
-          new Issue({ number: 3 }),
-          new Issue({ number: 4 }),
-          new Issue({ number: 5 }),
+          new Issue({
+            id: 1111,
+            number: 1,
+            title: 'First Issue',
+            url: 'first-url',
+            createdAt: '2001-01-01T01:01:01Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 2222,
+            number: 2,
+            title: 'Second Issue',
+            url: 'second-url',
+            createdAt: '2002-02-02T02:02:02Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 3333,
+            number: 3,
+            title: 'Third Issue',
+            url: 'third-url',
+            createdAt: '2003-03-03T03:03:03Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 4444,
+            number: 4,
+            title: 'Fourth Issue',
+            url: 'fourth-url',
+            createdAt: '2004-04-04T04:04:04Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 5555,
+            number: 5,
+            title: 'Fifth Issue',
+            url: 'fifth-url',
+            createdAt: '2005-05-05T05:05:05Z',
+            commentCount: 0,
+          }),
         ]);
 
         result = render(
@@ -122,14 +180,70 @@ describe('IssueCount', () => {
     describe('when there are 7 or more issues', () => {
       beforeEach(() => {
         resolve([
-          new Issue({ number: 1 }),
-          new Issue({ number: 2 }),
-          new Issue({ number: 3 }),
-          new Issue({ number: 4 }),
-          new Issue({ number: 5 }),
-          new Issue({ number: 6 }),
-          new Issue({ number: 7 }),
-          new Issue({ number: 8 }),
+          new Issue({
+            id: 1111,
+            number: 1,
+            title: 'First Issue',
+            url: 'first-url',
+            createdAt: '2001-01-01T01:01:01Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 2222,
+            number: 2,
+            title: 'Second Issue',
+            url: 'second-url',
+            createdAt: '2002-02-02T02:02:02Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 3333,
+            number: 3,
+            title: 'Third Issue',
+            url: 'third-url',
+            createdAt: '2003-03-03T03:03:03Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 4444,
+            number: 4,
+            title: 'Fourth Issue',
+            url: 'fourth-url',
+            createdAt: '2004-04-04T04:04:04Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 5555,
+            number: 5,
+            title: 'Fifth Issue',
+            url: 'fifth-url',
+            createdAt: '2005-05-05T05:05:05Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 6666,
+            number: 6,
+            title: 'Sixth Issue',
+            url: 'sixth-url',
+            createdAt: '2006-06-06T06:06:06Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 7777,
+            number: 7,
+            title: 'Seventh Issue',
+            url: 'seventh-url',
+            createdAt: '2007-07-07T07:07:07Z',
+            commentCount: 0,
+          }),
+          new Issue({
+            id: 8888,
+            number: 8,
+            title: 'Eighth Issue',
+            url: 'eighth-url',
+            createdAt: '2008-08-08T08:08:08Z',
+            commentCount: 0,
+          }),
         ]);
 
         result = render(

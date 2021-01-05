@@ -29,15 +29,15 @@ export default class RepoItem extends React.Component<Props> {
     const repo = parts[1];
 
     return (
-      <div className="repo-item">
-        <div className="org">{org}</div>
+      <div className='repo-item'>
+        <div className='org'>{org}</div>
         <a
-          className="repo"
+          className='repo'
           href={this.props.repo.url}
-          target="_blank"
-          rel="noopener noreferrer"
+          target='_blank'
+          rel='noopener noreferrer'
         >{repo}</a>
-        <div className="content">
+        <div className='content'>
           <IssueCount
             repo={this.props.repo}
             store={this.props.issueStore}

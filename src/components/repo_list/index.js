@@ -12,7 +12,7 @@ import { SyncIcon } from '@primer/octicons-react';
 import '../../styles/repo_list/index.css';
 
 type Props = {|
-  store: RepoStoreInterface,
+  repoStore: RepoStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
   timer: TimerInterface,
@@ -42,7 +42,6 @@ export default class RepoList extends React.Component<Props, State> {
       }
     }
 
-
     this.state = {
       loading: repos.length === 0,
       repos: repos,
@@ -66,8 +65,8 @@ export default class RepoList extends React.Component<Props, State> {
 
   async load() {
     const results = await Promise.all([
-      this.props.store.list('paketo-buildpacks'),
-      this.props.store.list('paketo-community'),
+      this.props.repoStore.list('paketo-buildpacks'),
+      this.props.repoStore.list('paketo-community'),
     ]);
 
     let repos: Repo[] = [];
@@ -103,7 +102,7 @@ export default class RepoList extends React.Component<Props, State> {
     if (!this.state.loading) {
       items = this.state.repos.map((repo) => (
         <RepoItem
-          key={repo.key}
+          key={repo.id}
           repo={repo}
           issueStore={this.props.issueStore}
           pullRequestStore={this.props.pullRequestStore}

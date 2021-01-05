@@ -21,6 +21,7 @@ describe('PullRequestCount', () => {
     cache = new Cache();
 
     repo = new Repo({
+      id: 1234,
       name: 'some-org/some-repo',
       url: 'some-url',
       openIssuesCount: 3,

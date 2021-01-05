@@ -17,6 +17,9 @@ describe('Header', () => {
           <Route path="/some/other/page">
             <div>Some Other Page</div>
           </Route>
+          <Route path="/issues">
+            <div>Issue List Page</div>
+          </Route>
           <Route path="/">
             <div>Homepage</div>
           </Route>
@@ -48,6 +51,20 @@ describe('Header', () => {
       const homepage = result.getByText(/Homepage/i);
 
       expect(homepage).toBeInTheDocument();
+    });
+  });
+
+  describe('when clicking the issues link', () => {
+    beforeEach(() => {
+      const issues = result.getByText(/Issues/i);
+
+      userEvent.click(issues);
+    });
+
+    it('links to the issues page', () => {
+      const issues = result.getByText(/Issue List Page/i);
+
+      expect(issues).toBeInTheDocument();
     });
   });
 });

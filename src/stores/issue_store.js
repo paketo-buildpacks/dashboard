@@ -27,7 +27,12 @@ export default class IssueStore {
       for (const issue of response.data) {
         if (!issue.pull_request) {
           issues.push(new Issue({
+            id: issue.id,
             number: issue.number,
+            title: issue.title,
+            url: issue.html_url,
+            createdAt: issue.created_at,
+            commentCount: issue.comments,
           }));
         }
       }

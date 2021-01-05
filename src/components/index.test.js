@@ -73,19 +73,46 @@ describe('App', () => {
       userEvent.click(button);
     });
 
-    it('renders the repo list', () => {
-      const reposList = result.container.querySelector('div.repo-list');
+    describe('when visiting the / path', () => {
+      beforeEach(() => {
+        const link = result.getByAltText(/logo/i);
+        userEvent.click(link);
+      });
 
-      expect(reposList).toBeInTheDocument();
+      it('renders the repo list', () => {
+        const reposList = result.container.querySelector('div.repo-list');
+        expect(reposList).toBeInTheDocument();
+      });
+
+      it('does not render the login form', () => {
+        const form = result.container.querySelector('form.login');
+        expect(form).not.toBeInTheDocument();
+      });
+
+      it('assigns the token into github client', () => {
+        expect(storage.getItem('token')).toEqual('some-token');
+      });
     });
 
-    it('does not render the login form', () => {
-      const form = result.container.querySelector('form.login');
-      expect(form).not.toBeInTheDocument();
-    });
+    describe('when visiting the /issues path', () => {
+      beforeEach(() => {
+        const link = result.getByText(/Issues/i);
+        userEvent.click(link);
+      });
 
-    it('assigns the token into github client', () => {
-      expect(storage.getItem('token')).toEqual('some-token');
+      it('renders the issues list', () => {
+        const reposList = result.container.querySelector('div.issue-list');
+        expect(reposList).toBeInTheDocument();
+      });
+
+      it('does not render the login form', () => {
+        const form = result.container.querySelector('form.login');
+        expect(form).not.toBeInTheDocument();
+      });
+
+      it('assigns the token into github client', () => {
+        expect(storage.getItem('token')).toEqual('some-token');
+      });
     });
   });
 });

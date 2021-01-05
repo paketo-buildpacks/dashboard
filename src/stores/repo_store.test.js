@@ -20,16 +20,16 @@ describe('RepoStore', () => {
           data: [
             {
               id: 1111,
-              name: "first-repo",
-              full_name: "some-org/first-repo",
-              html_url: "first-repo-url",
+              name: 'first-repo',
+              full_name: 'some-org/first-repo',
+              html_url: 'first-repo-url',
               open_issues_count: 1,
             },
             {
               id: 2222,
-              name: "second-repo",
-              full_name: "some-org/second-repo",
-              html_url: "second-repo-url",
+              name: 'second-repo',
+              full_name: 'some-org/second-repo',
+              html_url: 'second-repo-url',
               open_issues_count: 2,
             },
           ],
@@ -41,16 +41,16 @@ describe('RepoStore', () => {
           data: [
             {
               id: 3333,
-              name: "third-repo",
-              full_name: "some-org/third-repo",
-              html_url: "third-repo-url",
+              name: 'third-repo',
+              full_name: 'some-org/third-repo',
+              html_url: 'third-repo-url',
               open_issues_count: 3,
             },
             {
               id: 4444,
-              name: "fourth-repo",
-              full_name: "some-org/fourth-repo",
-              html_url: "fourth-repo-url",
+              name: 'fourth-repo',
+              full_name: 'some-org/fourth-repo',
+              html_url: 'fourth-repo-url',
               open_issues_count: 4,
             },
           ],
@@ -66,21 +66,25 @@ describe('RepoStore', () => {
 
       expect(repos).toEqual([
         new Repo({
+          id: 1111,
           name: "some-org/first-repo",
           url: "first-repo-url",
           openIssuesCount: 1,
         }),
         new Repo({
+          id: 2222,
           name: "some-org/second-repo",
           url: "second-repo-url",
           openIssuesCount: 2,
         }),
         new Repo({
+          id: 3333,
           name: "some-org/third-repo",
           url: "third-repo-url",
           openIssuesCount: 3,
         }),
         new Repo({
+          id: 4444,
           name: "some-org/fourth-repo",
           url: "fourth-repo-url",
           openIssuesCount: 4,

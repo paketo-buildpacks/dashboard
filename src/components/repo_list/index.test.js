@@ -3,7 +3,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Repo from '../../models/repo';
-import RepoList from './index';
+import RepoList from '.';
 
 import RepoStore from '../../fakes/repo_store';
 import IssueStore from '../../fakes/issue_store';
@@ -13,15 +13,15 @@ import Cache from '../../fakes/cache';
 
 describe('RepoList', () => {
   let result, resolve;
-  let store: RepoStore;
+  let repoStore: RepoStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
   let timer: Timer;
   let cache: Cache;
 
   beforeEach(() => {
-    store = new RepoStore();
-    store.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
+    repoStore = new RepoStore();
+    repoStore.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
 
     timer = new Timer();
     timer.setIntervalCall.returns.id = 1234;
@@ -35,7 +35,7 @@ describe('RepoList', () => {
     beforeEach(() => {
       result = render(
         <RepoList
-          store={store}
+          repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}
@@ -55,11 +55,13 @@ describe('RepoList', () => {
     beforeEach(() => {
       resolve([
         new Repo({
+          id: 1234,
           name: 'First Repository',
           url: 'first-url',
           openIssuesCount: 1,
         }),
         new Repo({
+          id: 2345,
           name: 'Second Repository',
           url: 'second-url',
           openIssuesCount: 2,
@@ -68,7 +70,7 @@ describe('RepoList', () => {
 
       result = render(
         <RepoList
-          store={store}
+          repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}
@@ -90,11 +92,11 @@ describe('RepoList', () => {
         const fifteenMinutes = 900000;
 
         expect(timer.setIntervalCall.receives.interval).toEqual(fifteenMinutes);
-        expect(store.listCall.callCount).toEqual(2);
+        expect(repoStore.listCall.callCount).toEqual(2);
 
         timer.setIntervalCall.receives.callback();
 
-        expect(store.listCall.callCount).toEqual(4);
+        expect(repoStore.listCall.callCount).toEqual(4);
       });
     });
   });
@@ -103,7 +105,7 @@ describe('RepoList', () => {
     beforeEach(() => {
       result = render(
         <RepoList
-          store={store}
+          repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           timer={timer}

@@ -26,7 +26,11 @@ export default class PullRequestStore {
 
       for (const pullRequest of response.data) {
         pullRequests.push(new PullRequest({
+          id: pullRequest.id,
           number: pullRequest.number,
+          title: pullRequest.title,
+          createdAt: pullRequest.created_at,
+          url: pullRequest.html_url,
         }));
       }
 

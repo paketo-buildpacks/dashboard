@@ -114,5 +114,26 @@ describe('App', () => {
         expect(storage.getItem('token')).toEqual('some-token');
       });
     });
+
+    describe('when visiting the /pull-requests path', () => {
+      beforeEach(() => {
+        const link = result.getByText(/Pull Requests/i);
+        userEvent.click(link);
+      });
+
+      it('renders the pull requests list', () => {
+        const reposList = result.container.querySelector('div.pull-request-list');
+        expect(reposList).toBeInTheDocument();
+      });
+
+      it('does not render the login form', () => {
+        const form = result.container.querySelector('form.login');
+        expect(form).not.toBeInTheDocument();
+      });
+
+      it('assigns the token into github client', () => {
+        expect(storage.getItem('token')).toEqual('some-token');
+      });
+    });
   });
 });

@@ -11,6 +11,7 @@ import Header from './header';
 import Login from './login';
 import RepoList from './repo_list';
 import IssueList from './issue_list';
+import PullRequestList from './pull_request_list';
 
 import { RepoStoreInterface } from '../stores/repo_store';
 import { IssueStoreInterface } from '../stores/issue_store';
@@ -70,9 +71,17 @@ class App extends React.Component<Props, State> {
 
             <PrivateRoute path={`${root}/issues`} authenticated={this.state.authenticated}>
               <IssueList
+                cache={this.props.cache}
                 repoStore={this.props.repoStore}
                 issueStore={this.props.issueStore}
+              />
+            </PrivateRoute>
+
+            <PrivateRoute path={`${root}/pull-requests`} authenticated={this.state.authenticated}>
+              <PullRequestList
                 cache={this.props.cache}
+                repoStore={this.props.repoStore}
+                pullRequestStore={this.props.pullRequestStore}
               />
             </PrivateRoute>
 

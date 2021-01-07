@@ -19,10 +19,18 @@ describe('PullRequestStore', () => {
         {
           data: [
             {
+              id: 1111,
               number: 1,
+              title: 'First PR',
+              created_at: '2001-01-01T01:01:01Z',
+              html_url: 'first-url',
             },
             {
+              id: 2222,
               number: 2,
+              title: 'Second PR',
+              created_at: '2002-02-02T02:02:02Z',
+              html_url: 'second-url',
             },
           ],
           headers: {
@@ -32,7 +40,11 @@ describe('PullRequestStore', () => {
         {
           data: [
             {
+              id: 3333,
               number: 3,
+              title: 'Third PR',
+              created_at: '2003-03-03T03:03:03Z',
+              html_url: 'third-url',
             },
           ],
           headers: {
@@ -46,9 +58,27 @@ describe('PullRequestStore', () => {
       const pullRequests = await store.list('some-org/some-repo');
 
       expect(pullRequests).toEqual([
-        new PullRequest({ number: 1 }),
-        new PullRequest({ number: 2 }),
-        new PullRequest({ number: 3 }),
+        new PullRequest({
+          id: 1111,
+          number: 1,
+          title: 'First PR',
+          createdAt: '2001-01-01T01:01:01Z',
+          url: 'first-url',
+        }),
+        new PullRequest({
+          id: 2222,
+          number: 2,
+          title: 'Second PR',
+          createdAt: '2002-02-02T02:02:02Z',
+          url: 'second-url',
+        }),
+        new PullRequest({
+          id: 3333,
+          number: 3,
+          title: 'Third PR',
+          createdAt: '2003-03-03T03:03:03Z',
+          url: 'third-url',
+        }),
       ]);
 
       expect(client.doCall.callCount).toEqual(2);

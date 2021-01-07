@@ -1,0 +1,23 @@
+.pull-request-list > .title {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.pull-request-list .title h2 {
+  margin: 0;
+  font-weight: 100;
+}
+
+.pull-request-list .title .count {
+  margin: 0 0 3px 0;
+  font-weight: 100;
+  position: absolute;
+  right: 25px;
+}
+
+.pull-request-list .loading {
+  width: 100%;
+  text-align: center;
+  color: #ADADAD;
+}

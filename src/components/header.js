@@ -26,6 +26,9 @@ class Header extends React.Component<Props> {
           <h3>
             <Link to={`${root}/issues`}>Issues</Link>
           </h3>
+          <h3>
+            <Link to={`${root}/pull-requests`}>Pull Requests</Link>
+          </h3>
         </div>
       </header>
     )

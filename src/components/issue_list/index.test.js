@@ -52,7 +52,7 @@ describe('IssueList', () => {
             name: 'first-org/first-repo',
             url: 'first-url',
             openIssuesCount: 2,
-          }
+          },
         ],
       });
 

@@ -146,7 +146,7 @@ export default class IssueList extends React.Component<Props, State> {
   }
 
   render(): Node {
-    let items = (<div className='loading'>...</div>);
+    let items: Node = (<div className='loading'>...</div>);
 
     if (!this.state.loading) {
       items = this.state.issues.map(i => (

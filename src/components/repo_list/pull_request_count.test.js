@@ -13,6 +13,7 @@ describe('PullRequestCount', () => {
   let store: PullRequestStore;
   let cache: Cache;
   let repo: Repo;
+  let pullRequests: PullRequest[];
 
   beforeEach(() => {
     store = new PullRequestStore();
@@ -26,6 +27,65 @@ describe('PullRequestCount', () => {
       url: 'some-url',
       openIssuesCount: 3,
     });
+
+    pullRequests = [
+      new PullRequest({
+        id: 1111,
+        number: 1,
+        title: 'First PR',
+        createdAt: '2001-01-01T01:01:01Z',
+        url: 'first-url',
+      }),
+      new PullRequest({
+        id: 2222,
+        number: 2,
+        title: 'Second PR',
+        createdAt: '2002-02-02T02:02:02Z',
+        url: 'second-url',
+      }),
+      new PullRequest({
+        id: 3333,
+        number: 3,
+        title: 'Third PR',
+        createdAt: '2003-03-03T03:03:03Z',
+        url: 'third-url',
+      }),
+      new PullRequest({
+        id: 4444,
+        number: 4,
+        title: 'Fourth PR',
+        createdAt: '2004-04-04T04:04:04Z',
+        url: 'fourth-url',
+      }),
+      new PullRequest({
+        id: 5555,
+        number: 5,
+        title: 'Fifth PR',
+        createdAt: '2005-05-05T05:05:05Z',
+        url: 'fifth-url',
+      }),
+      new PullRequest({
+        id: 6666,
+        number: 6,
+        title: 'Sixth PR',
+        createdAt: '2006-06-06T06:06:06Z',
+        url: 'sixth-url',
+      }),
+      new PullRequest({
+        id: 7777,
+        number: 7,
+        title: 'Seventh PR',
+        createdAt: '2007-07-07T07:07:07Z',
+        url: 'seventh-url',
+      }),
+      new PullRequest({
+        id: 8888,
+        number: 8,
+        title: 'Eighth PR',
+        createdAt: '2008-08-08T08:08:08Z',
+        url: 'eighth-url',
+      }),
+    ]
   });
 
   describe('when the promise is not resolved', () => {
@@ -70,11 +130,7 @@ describe('PullRequestCount', () => {
 
     describe('when there are less than 4 pull requests', () => {
       beforeEach(() => {
-        resolve([
-          new PullRequest({ number: 1 }),
-          new PullRequest({ number: 2 }),
-          new PullRequest({ number: 3 }),
-        ]);
+        resolve(pullRequests.slice(0,3));
 
         result = render(
           <PullRequestCount
@@ -95,13 +151,7 @@ describe('PullRequestCount', () => {
 
     describe('when there are less than 7 pull requests', () => {
       beforeEach(() => {
-        resolve([
-          new PullRequest({ number: 1 }),
-          new PullRequest({ number: 2 }),
-          new PullRequest({ number: 3 }),
-          new PullRequest({ number: 4 }),
-          new PullRequest({ number: 5 }),
-        ]);
+        resolve(pullRequests.slice(0,5));
 
         result = render(
           <PullRequestCount
@@ -122,16 +172,7 @@ describe('PullRequestCount', () => {
 
     describe('when there are 7 or more pull requests', () => {
       beforeEach(() => {
-        resolve([
-          new PullRequest({ number: 1 }),
-          new PullRequest({ number: 2 }),
-          new PullRequest({ number: 3 }),
-          new PullRequest({ number: 4 }),
-          new PullRequest({ number: 5 }),
-          new PullRequest({ number: 6 }),
-          new PullRequest({ number: 7 }),
-          new PullRequest({ number: 8 }),
-        ]);
+        resolve(pullRequests.slice(0, 8));
 
         result = render(
           <PullRequestCount

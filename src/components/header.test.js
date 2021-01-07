@@ -20,6 +20,9 @@ describe('Header', () => {
           <Route path="/issues">
             <div>Issue List Page</div>
           </Route>
+          <Route path="/pull-requests">
+            <div>Pull Request List Page</div>
+          </Route>
           <Route path="/">
             <div>Homepage</div>
           </Route>
@@ -63,6 +66,20 @@ describe('Header', () => {
 
     it('links to the issues page', () => {
       const issues = result.getByText(/Issue List Page/i);
+
+      expect(issues).toBeInTheDocument();
+    });
+  });
+
+  describe('when clicking the pull requests link', () => {
+    beforeEach(() => {
+      const issues = result.getByText(/Pull Requests/i);
+
+      userEvent.click(issues);
+    });
+
+    it('links to the pull requests page', () => {
+      const issues = result.getByText(/Pull Request List Page/i);
 
       expect(issues).toBeInTheDocument();
     });

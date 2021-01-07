@@ -50,6 +50,21 @@ export default class PullRequestList extends React.Component<Props,State> {
       }
     }
 
+    pullRequests.sort((a: RepoPullRequest, b: RepoPullRequest): number => {
+      const createdAtA = a.pullRequest.createdAt.toMillis();
+      const createdAtB = b.pullRequest.createdAt.toMillis();
+
+      if (createdAtA < createdAtB) {
+        return -1;
+      }
+
+      if (createdAtA > createdAtB) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     this.state = {
       loading: pullRequests.length === 0,
       pullRequests: pullRequests,

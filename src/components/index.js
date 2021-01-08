@@ -16,6 +16,7 @@ import PullRequestList from './pull_request_list';
 import { RepoStoreInterface } from '../stores/repo_store';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { PullRequestStoreInterface } from '../stores/pull_request_store';
+import { ReleaseStoreInterface } from '../stores/release_store';
 import { TimerInterface } from '../lib/timer';
 import { CacheInterface } from '../lib/cache';
 import { StorageInterface } from '../lib/storage';
@@ -24,6 +25,7 @@ type Props = {|
   repoStore: RepoStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
+  releaseStore: ReleaseStoreInterface,
   timer: TimerInterface,
   cache: CacheInterface,
   storage: StorageInterface,
@@ -90,6 +92,7 @@ class App extends React.Component<Props, State> {
                 repoStore={this.props.repoStore}
                 issueStore={this.props.issueStore}
                 pullRequestStore={this.props.pullRequestStore}
+                releaseStore={this.props.releaseStore}
                 timer={this.props.timer}
                 cache={this.props.cache}
               />

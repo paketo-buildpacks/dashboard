@@ -12,6 +12,7 @@ import GitHubClient from './lib/github_client';
 import RepoStore from './stores/repo_store';
 import IssueStore from './stores/issue_store';
 import PullRequestStore from './stores/pull_request_store';
+import ReleaseStore from './stores/release_store';
 import Cache from './lib/cache';
 
 const storage = window.localStorage;
@@ -22,6 +23,7 @@ const gitHubClient = new GitHubClient({ storage: storage });
 const repoStore = new RepoStore({ client: gitHubClient });
 const issueStore = new IssueStore({ client: gitHubClient });
 const pullRequestStore = new PullRequestStore({ client: gitHubClient });
+const releaseStore = new ReleaseStore({ client: gitHubClient });
 
 ReactDOM.render(
   <BrowserRouter>
@@ -29,6 +31,7 @@ ReactDOM.render(
       repoStore={repoStore}
       issueStore={issueStore}
       pullRequestStore={pullRequestStore}
+      releaseStore={releaseStore}
       timer={timer}
       cache={cache}
       storage={storage}

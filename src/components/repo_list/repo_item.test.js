@@ -2,10 +2,13 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+
 import RepoItem from './repo_item';
 import Repo from '../../models/repo';
+
 import IssueStore from '../../fakes/issue_store';
 import PullRequestStore from '../../fakes/pull_request_store';
+import ReleaseStore from '../../fakes/release_store';
 import Cache from '../../fakes/cache';
 
 describe('RepoItem', () => {
@@ -21,6 +24,7 @@ describe('RepoItem', () => {
 
     const issueStore: IssueStore = new IssueStore();
     const pullRequestStore: PullRequestStore = new PullRequestStore();
+    const releaseStore: ReleaseStore = new ReleaseStore();
     const cache = new Cache();
 
     result = render(
@@ -28,6 +32,7 @@ describe('RepoItem', () => {
         repo={repo}
         issueStore={issueStore}
         pullRequestStore={pullRequestStore}
+        releaseStore={releaseStore}
         cache={cache}
       />
     );
@@ -52,5 +57,11 @@ describe('RepoItem', () => {
     const pullRequestCount = result.getByRole('generic', { name: 'pull-request-count' });
 
     expect(pullRequestCount).toBeInTheDocument();
+  });
+
+  it('renders the release state', () => {
+    const latestRelease = result.getByRole('link', { name: 'release-state' });
+
+    expect(latestRelease).toBeInTheDocument();
   });
 });

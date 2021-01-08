@@ -9,6 +9,7 @@ import App from '.';
 import RepoStore from '../fakes/repo_store';
 import IssueStore from '../fakes/issue_store';
 import PullRequestStore from '../fakes/pull_request_store';
+import ReleaseStore from '../fakes/release_store';
 import Timer from '../fakes/timer';
 import Cache from '../fakes/cache';
 import Storage from '../fakes/storage';
@@ -18,6 +19,7 @@ describe('App', () => {
   let repoStore: RepoStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
+  let releaseStore: ReleaseStore;
   let timer: Timer;
   let cache: Cache;
   let storage: Storage;
@@ -36,6 +38,7 @@ describe('App', () => {
           repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
+          releaseStore={releaseStore}
           timer={timer}
           cache={cache}
           storage={storage}

@@ -4,25 +4,32 @@ import PullRequest from '../models/pull_request';
 
 type ListCall = {
   callCount: number,
-  returns: {
+  receives: {|
+    repo: string,
+  |},
+  returns: {|
     promises: Promise<PullRequest[]>[],
-  },
+  |},
 };
 
-export default class IssueStore {
+export default class PullRequestStore {
   listCall: ListCall;
 
   constructor() {
     this.listCall = {
       callCount: 0,
+      receives: {
+        repo: '',
+      },
       returns: {
         promises: [],
       },
     };
   }
 
-  list(): Promise<PullRequest[]> {
+  list(repo: string): Promise<PullRequest[]> {
     this.listCall.callCount++;
+    this.listCall.receives.repo = repo;
 
     let promise: Promise<PullRequest[]> = Promise.resolve([]);
 

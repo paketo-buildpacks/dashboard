@@ -1,0 +1,17 @@
+.release-state {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-top: 1px solid #DDD;
+  background: #F9F9F9;
+  padding: 5px 0;
+  font-size: 0.8em;
+}
+
+.release-state .commits-behind.behind {
+  color: #E64B4B;
+}
+
+.release-state .commits-behind .octicon {
+  margin-left: 4px;
+}

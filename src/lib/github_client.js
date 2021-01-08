@@ -8,7 +8,8 @@ export type GitHubClientRequest = {
 };
 
 export type GitHubClientResponse = {
-  data: any[];
+  status: number,
+  data: any,
   headers: {
     link: ?string,
   },
@@ -47,6 +48,7 @@ export default class GitHubClient {
     const data = await response.json();
 
     return {
+      status: response.status,
       data: data,
       headers: {
         link: link,

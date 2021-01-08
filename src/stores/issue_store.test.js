@@ -17,6 +17,7 @@ describe('IssueStore', () => {
     beforeEach(() => {
       client.doCall.returns.responses = [
         {
+          status: 200,
           data: [
             {
               id: 1234,
@@ -41,6 +42,7 @@ describe('IssueStore', () => {
           },
         },
         {
+          status: 200,
           data: [
             {
               id: 3456,

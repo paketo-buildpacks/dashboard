@@ -1,20 +1,26 @@
 // @flow
 
 import React, { type Node } from 'react';
+
 import Repo from '../../models/repo';
 import RepoItem from './repo_item';
+
 import { IssueStoreInterface } from '../../stores/issue_store';
 import { RepoStoreInterface } from '../../stores/repo_store';
 import { PullRequestStoreInterface } from '../../stores/pull_request_store';
+import { ReleaseStoreInterface } from '../../stores/release_store';
 import { TimerInterface } from '../../lib/timer';
 import { CacheInterface } from '../../lib/cache';
+
 import { SyncIcon } from '@primer/octicons-react';
+
 import '../../styles/repo_list/index.css';
 
 type Props = {|
   repoStore: RepoStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
+  releaseStore: ReleaseStoreInterface,
   timer: TimerInterface,
   cache: CacheInterface,
 |};
@@ -106,6 +112,7 @@ export default class RepoList extends React.Component<Props, State> {
           repo={repo}
           issueStore={this.props.issueStore}
           pullRequestStore={this.props.pullRequestStore}
+          releaseStore={this.props.releaseStore}
           cache={this.props.cache}
         />
       ));

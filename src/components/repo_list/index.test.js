@@ -2,12 +2,14 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+
 import Repo from '../../models/repo';
 import RepoList from '.';
 
 import RepoStore from '../../fakes/repo_store';
 import IssueStore from '../../fakes/issue_store';
 import PullRequestStore from '../../fakes/pull_request_store';
+import ReleaseStore from '../../fakes/release_store';
 import Timer from '../../fakes/timer';
 import Cache from '../../fakes/cache';
 
@@ -16,6 +18,7 @@ describe('RepoList', () => {
   let repoStore: RepoStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
+  let releaseStore: ReleaseStore;
   let timer: Timer;
   let cache: Cache;
 
@@ -28,6 +31,7 @@ describe('RepoList', () => {
 
     issueStore = new IssueStore();
     pullRequestStore = new PullRequestStore();
+    releaseStore = new ReleaseStore();
     cache = new Cache();
   });
 
@@ -38,6 +42,7 @@ describe('RepoList', () => {
           repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
+          releaseStore={releaseStore}
           timer={timer}
           cache={cache}
         />
@@ -73,6 +78,7 @@ describe('RepoList', () => {
           repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
+          releaseStore={releaseStore}
           timer={timer}
           cache={cache}
         />
@@ -108,6 +114,7 @@ describe('RepoList', () => {
           repoStore={repoStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
+          releaseStore={releaseStore}
           timer={timer}
           cache={cache}
         />

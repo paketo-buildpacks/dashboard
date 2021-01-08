@@ -17,6 +17,7 @@ describe('RepoStore', () => {
     beforeEach(() => {
       client.doCall.returns.responses = [
         {
+          status: 200,
           data: [
             {
               id: 1111,
@@ -38,6 +39,7 @@ describe('RepoStore', () => {
           },
         },
         {
+          status: 200,
           data: [
             {
               id: 3333,

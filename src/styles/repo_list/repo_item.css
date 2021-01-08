@@ -23,7 +23,7 @@
   display: block;
 }
 
-.repo-item .content {
+.repo-item .issue-pull-request-count {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

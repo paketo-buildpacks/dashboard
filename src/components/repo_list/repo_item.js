@@ -24,10 +24,6 @@ type Props = {|
 |};
 
 export default class RepoItem extends React.Component<Props> {
-  shouldComponentUpdate(props: Props): boolean {
-    return !this.props.repo.isEqualTo(props.repo);
-  }
-
   render(): Node {
     const parts = this.props.repo.name.split('/');
 

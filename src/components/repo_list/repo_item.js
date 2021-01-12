@@ -2,16 +2,16 @@
 
 import React, { type Node } from 'react';
 
-import IssueCount from './issue_count';
-import PullRequestCount from './pull_request_count';
-import ReleaseState from './release_state';
-
+import Repo from '../../models/repo';
 import { IssueStoreInterface } from '../../stores/issue_store';
 import { PullRequestStoreInterface } from '../../stores/pull_request_store';
 import { ReleaseStoreInterface } from '../../stores/release_store';
 import { CacheInterface } from '../../lib/cache';
 
-import Repo from '../../models/repo';
+import IssueCount from './issue_count';
+import PullRequestCount from './pull_request_count';
+import ReleaseState from './release_state';
+import ExternalLink from '../lib/external_link';
 
 import '../../styles/repo_list/repo_item.css';
 
@@ -33,12 +33,9 @@ export default class RepoItem extends React.Component<Props> {
     return (
       <div className='repo-item'>
         <div className='org'>{org}</div>
-        <a
-          className='repo'
-          href={this.props.repo.url}
-          target='_blank'
-          rel='noopener noreferrer'
-        >{repo}</a>
+        <ExternalLink href={this.props.repo.url} className='repo'>
+          {repo}
+        </ExternalLink>
         <div className='issue-pull-request-count'>
           <IssueCount
             repo={this.props.repo}

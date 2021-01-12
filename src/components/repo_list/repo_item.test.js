@@ -39,29 +39,22 @@ describe('RepoItem', () => {
   });
 
   it('renders the name of the repository as a link', () => {
-    const nameLink = result.getByText(/some-repo/i);
-
-    expect(nameLink).toBeInTheDocument();
+    const nameLink = result.getByRole('link', { name: 'some-repo' });
     expect(nameLink).toHaveAttribute('href', 'some-url');
-    expect(nameLink).toHaveAttribute('target', '_blank');
-    expect(nameLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders the number of open issues', () => {
-    const issueCount = result.getByRole('generic', { name: 'issue-count' });
-
+    const issueCount = result.getByRole('link', { name: 'issue-count' });
     expect(issueCount).toBeInTheDocument();
   });
 
   it('renders the number of open pull requests', () => {
-    const pullRequestCount = result.getByRole('generic', { name: 'pull-request-count' });
-
+    const pullRequestCount = result.getByRole('link', { name: 'pull-request-count' });
     expect(pullRequestCount).toBeInTheDocument();
   });
 
   it('renders the release state', () => {
     const latestRelease = result.getByRole('link', { name: 'release-state' });
-
     expect(latestRelease).toBeInTheDocument();
   });
 });

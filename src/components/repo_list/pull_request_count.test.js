@@ -99,10 +99,10 @@ describe('PullRequestCount', () => {
       );
     });
 
-    it('renders a zero count', () => {
-      const loading = result.getByText(/0/i);
-
-      expect(loading).toBeInTheDocument();
+    it('renders a zero count as a link', () => {
+      const count = result.getByRole('link', { name: 'pull-request-count' })
+      expect(count).toHaveTextContent(/0/i);
+      expect(count).toHaveAttribute('href', 'some-url/pulls');
     });
   });
 
@@ -121,7 +121,7 @@ describe('PullRequestCount', () => {
       });
 
       it('classifies the priority as low', () => {
-        const count = result.getByRole('generic', { name: 'pull-request-count' });
+        const count = result.getByRole('link', { name: 'pull-request-count' })
 
         expect(count).toHaveTextContent(/0/i);
         expect(count).toHaveClass('none');
@@ -142,7 +142,7 @@ describe('PullRequestCount', () => {
       });
 
       it('classifies the priority as low', () => {
-        const count = result.getByRole('generic', { name: 'pull-request-count' });
+        const count = result.getByRole('link', { name: 'pull-request-count' });
 
         expect(count).toHaveTextContent(/3/i);
         expect(count).toHaveClass('low');
@@ -163,7 +163,7 @@ describe('PullRequestCount', () => {
       });
 
       it('classifies the priority as medium', () => {
-        const count = result.getByRole('generic', { name: 'pull-request-count' });
+        const count = result.getByRole('link', { name: 'pull-request-count' });
 
         expect(count).toHaveTextContent(/5/i);
         expect(count).toHaveClass('medium');
@@ -184,7 +184,7 @@ describe('PullRequestCount', () => {
       });
 
       it('classifies the priority as high', () => {
-        const count = result.getByRole('generic', { name: 'pull-request-count' });
+        const count = result.getByRole('link', { name: 'pull-request-count' });
 
         expect(count).toHaveTextContent(/8/i);
         expect(count).toHaveClass('high');

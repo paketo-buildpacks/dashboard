@@ -1,12 +1,14 @@
 // @flow
 
 import React, { type Node } from 'react';
-import { GitCommitIcon } from '@primer/octicons-react';
 
 import Repo from '../../models/repo';
 import Release, { NullRelease } from '../../models/release';
 import { ReleaseStoreInterface } from '../../stores/release_store';
 import { CacheInterface } from '../../lib/cache';
+
+import ExternalLink from '../lib/external_link';
+import { GitCommitIcon } from '@primer/octicons-react';
 
 import '../../styles/repo_list/release_state.css';
 
@@ -58,12 +60,10 @@ export default class ReleaseState extends React.Component<Props, State> {
     }
 
     return (
-      <a
+      <ExternalLink
         className='release-state'
-        aria-label='release-state'
         href={`${this.props.repo.url}/releases`}
-        target='_blank'
-        rel='noopener noreferrer'
+        aria-label='release-state'
       >
         <div className='tag' aria-label='tag'>
           {this.state.release.tag}
@@ -72,7 +72,7 @@ export default class ReleaseState extends React.Component<Props, State> {
           {this.state.release.commitsBehind}
           <GitCommitIcon size={16} />
         </div>
-      </a>
+      </ExternalLink>
     );
   }
 }

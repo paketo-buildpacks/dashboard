@@ -60,10 +60,7 @@ describe('ReleaseState', () => {
     it('renders the node as a link to the repo releases', () => {
       const node = result.getByRole('link', { name: 'release-state' });
 
-      expect(node).toBeInTheDocument();
       expect(node).toHaveAttribute('href', 'some-repo-url/releases');
-      expect(node).toHaveAttribute('target', '_blank');
-      expect(node).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
     it('renders the tag of the release', () => {

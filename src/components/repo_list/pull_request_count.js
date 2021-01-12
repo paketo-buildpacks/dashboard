@@ -1,12 +1,16 @@
 // @flow
 
 import React, { type Node } from 'react';
-import '../../styles/repo_list/pull_request_count.css';
+
 import PullRequest from '../../models/pull_request';
 import Repo from '../../models/repo';
 import { PullRequestStoreInterface } from '../../stores/pull_request_store';
 import { CacheInterface } from '../../lib/cache';
+
+import ExternalLink from '../lib/external_link';
 import { GitPullRequestIcon } from '@primer/octicons-react';
+
+import '../../styles/repo_list/pull_request_count.css';
 
 type Props = {|
   repo: Repo,
@@ -73,10 +77,14 @@ export default class PullRequestCount extends React.Component<Props, State> {
     }
 
     return (
-      <div className={`pull-request-count ${priority}`} aria-label='pull-request-count'>
+      <ExternalLink
+        href={`${this.props.repo.url}/pulls`}
+        className={`pull-request-count ${priority}`}
+        aria-label='pull-request-count'
+      >
         <GitPullRequestIcon size={16} />
         <div className='count'>{count}</div>
-      </div>
+      </ExternalLink>
     );
   }
 }

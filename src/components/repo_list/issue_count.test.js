@@ -108,10 +108,10 @@ describe('IssueCount', () => {
       );
     });
 
-    it('renders a 0 count', () => {
-      const loading = result.getByText(/0/i);
+    it('renders a 0 count as a link', () => {
+      const loading = result.getByRole('link', { name: 'issue-count' });
 
-      expect(loading).toBeInTheDocument();
+      expect(loading).toHaveTextContent(/0/i);
     });
   });
 
@@ -130,7 +130,7 @@ describe('IssueCount', () => {
       });
 
       it('classifies the priority as none', () => {
-        const count = result.getByRole('generic', { name: 'issue-count' });
+        const count = result.getByRole('link', { name: 'issue-count' });
 
         expect(count).toHaveTextContent(/0/i);
         expect(count).toHaveClass('none');
@@ -151,7 +151,7 @@ describe('IssueCount', () => {
       });
 
       it('classifies the priority as low', () => {
-        const count = result.getByRole('generic', { name: 'issue-count' });
+        const count = result.getByRole('link', { name: 'issue-count' });
 
         expect(count).toHaveTextContent(/3/i);
         expect(count).toHaveClass('low');
@@ -172,7 +172,7 @@ describe('IssueCount', () => {
       });
 
       it('classifies the priority as medium', () => {
-        const count = result.getByRole('generic', { name: 'issue-count' });
+        const count = result.getByRole('link', { name: 'issue-count' });
 
         expect(count).toHaveTextContent(/5/i);
         expect(count).toHaveClass('medium');
@@ -193,7 +193,7 @@ describe('IssueCount', () => {
       });
 
       it('classifies the priority as high', () => {
-        const count = result.getByRole('generic', { name: 'issue-count' });
+        const count = result.getByRole('link', { name: 'issue-count' });
 
         expect(count).toHaveTextContent(/8/i);
         expect(count).toHaveClass('high');

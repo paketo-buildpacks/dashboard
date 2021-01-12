@@ -38,11 +38,8 @@ describe('IssueItem', () => {
   });
 
   it('renders the issue title as a link', () => {
-    const title = result.getByText(/some-title/i);
-    expect(title).toBeInTheDocument();
+    const title = result.getByRole('link', { name: 'some-title' });
     expect(title).toHaveAttribute('href', 'some-issue-url');
-    expect(title).toHaveAttribute('target', '_blank');
-    expect(title).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders the issue number', () => {
@@ -51,11 +48,8 @@ describe('IssueItem', () => {
   });
 
   it('renders the issue repo as a link', () => {
-    const repo = result.getByText(/some-repo/i);
-    expect(repo).toBeInTheDocument();
+    const repo = result.getByRole('link', { name: 'some-repo' });
     expect(repo).toHaveAttribute('href', 'some-repo-url');
-    expect(repo).toHaveAttribute('target', '_blank');
-    expect(repo).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders the creation date', () => {

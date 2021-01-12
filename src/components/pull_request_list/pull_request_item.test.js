@@ -38,11 +38,8 @@ describe('PullRequestItem', () => {
   });
 
   it('renders the pull request title as a link', () => {
-    const title = result.getByText(/some-title/i);
-    expect(title).toBeInTheDocument();
+    const title = result.getByRole('link', { name: 'some-title' });
     expect(title).toHaveAttribute('href', 'some-pull-request-url');
-    expect(title).toHaveAttribute('target', '_blank');
-    expect(title).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders the pull request number', () => {
@@ -51,11 +48,8 @@ describe('PullRequestItem', () => {
   });
 
   it('renders the pull request repo as a link', () => {
-    const repo = result.getByText(/some-repo/i);
-    expect(repo).toBeInTheDocument();
+    const repo = result.getByRole('link', { name: 'some-repo' });
     expect(repo).toHaveAttribute('href', 'some-repo-url');
-    expect(repo).toHaveAttribute('target', '_blank');
-    expect(repo).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders the creation date', () => {

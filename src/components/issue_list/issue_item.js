@@ -1,9 +1,13 @@
 // @flow
 
 import React, { type Node } from 'react';
+
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
+
+import ExternalLink from '../lib/external_link';
 import { CommentIcon } from '@primer/octicons-react';
+
 import '../../styles/issue_list/issue_item.css';
 
 type Props = {|
@@ -23,21 +27,15 @@ export default class IssueItem extends React.Component<Props> {
 
     return (
       <div className='issue-item'>
-        <a
-          className='repo'
-          href={this.props.repo.url}
-          target='_blank'
-          rel='noopener noreferrer'
-        >{this.props.repo.name}</a>
+        <ExternalLink className='repo' href={this.props.repo.url} >
+          {this.props.repo.name}
+        </ExternalLink>
         <div className='content'>
           <div className='identifier'>
             <div className='number'>#{this.props.issue.number}</div>
-            <a
-              className='title'
-              href={this.props.issue.url}
-              target='_blank'
-              rel='noopener noreferrer'
-            >{this.props.issue.title}</a>
+            <ExternalLink className='title' href={this.props.issue.url} >
+              {this.props.issue.title}
+            </ExternalLink>
           </div>
           <div className={commentCountClass} aria-label='comment-count'>
             <div className='count'>{this.props.issue.commentCount}</div>

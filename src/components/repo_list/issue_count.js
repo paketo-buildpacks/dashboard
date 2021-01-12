@@ -1,12 +1,16 @@
 // @flow
 
 import React, { type Node } from 'react';
-import '../../styles/repo_list/issue_count.css';
+
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
 import { IssueStoreInterface } from '../../stores/issue_store';
 import { CacheInterface } from '../../lib/cache';
 import { IssueOpenedIcon } from '@primer/octicons-react';
+
+import ExternalLink from '../lib/external_link';
+
+import '../../styles/repo_list/issue_count.css';
 
 type Props = {|
   repo: Repo,
@@ -73,10 +77,14 @@ export default class IssueCount extends React.Component<Props, State> {
     }
 
     return (
-      <div className={`issue-count ${priority}`} aria-label='issue-count'>
+      <ExternalLink
+        className={`issue-count ${priority}`}
+        href={`${this.props.repo.url}/issues`}
+        aria-label='issue-count'
+      >
         <IssueOpenedIcon size={16} />
         <div className='count'>{count}</div>
-      </div>
+      </ExternalLink>
     );
   }
 }

@@ -6,6 +6,7 @@ import { render } from '@testing-library/react';
 import IssueList from '.';
 import Repo from '../../models/repo';
 import Issue from '../../models/issue';
+import User from '../../models/user';
 
 import RepoStore from '../../fakes/repo_store';
 import IssueStore from '../../fakes/issue_store';
@@ -63,12 +64,18 @@ describe('IssueList', () => {
             number: 1,
             title: 'First Issue',
             createdAt: '2001-01-01T01:01:01Z',
+            user: {
+              avatarURL: 'first-user-avatar-url',
+            },
           },
           {
             id: 2222,
             number: 2,
             title: 'Second Issue',
             createdAt: '2002-02-02T02:02:02Z',
+            user: {
+              avatarURL: 'second-user-avatar-url',
+            },
           },
         ],
       });
@@ -110,6 +117,9 @@ describe('IssueList', () => {
           url: 'first-url',
           createdAt: '2001-01-01T01:01:01Z',
           commentCount: 0,
+          user: new User({
+            avatarURL: 'first-user-avatar-url',
+          }),
         }),
         new Issue({
           id: 2222,
@@ -118,6 +128,9 @@ describe('IssueList', () => {
           url: 'second-url',
           createdAt: '2002-02-02T02:02:02Z',
           commentCount: 0,
+          user: new User({
+            avatarURL: 'second-user-avatar-url',
+          }),
         }),
       ]);
 

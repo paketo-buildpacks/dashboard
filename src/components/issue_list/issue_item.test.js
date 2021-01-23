@@ -6,6 +6,7 @@ import { render } from '@testing-library/react';
 import IssueItem from './issue_item';
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
+import User from '../../models/user';
 
 describe('IssueItem', () => {
   let result;
@@ -27,6 +28,9 @@ describe('IssueItem', () => {
       url: 'some-issue-url',
       createdAt: '2020-01-10T12:12:12Z',
       commentCount: 3,
+      user: new User({
+        avatarURL: 'some-user-avatar-url',
+      }),
     });
 
     result = render(
@@ -40,6 +44,12 @@ describe('IssueItem', () => {
   it('renders the issue title as a link', () => {
     const title = result.getByRole('link', { name: 'some-title' });
     expect(title).toHaveAttribute('href', 'some-issue-url');
+  });
+
+  it('renders the user avatar', () => {
+    const avatar = result.getByRole('img', { name: 'user-avatar' });
+    expect(avatar).toBeInTheDocument();
+    expect(avatar).toHaveAttribute('src', 'some-user-avatar-url');
   });
 
   it('renders the issue number', () => {
@@ -66,6 +76,9 @@ describe('IssueItem', () => {
         url: 'some-url',
         createdAt: '2020-01-10T12:12:12Z',
         commentCount: 5,
+        user: new User({
+          avatarURL: 'some-user-avatar-url',
+        }),
       });
 
       result.rerender(
@@ -92,6 +105,9 @@ describe('IssueItem', () => {
         url: 'some-url',
         createdAt: '2020-01-10T12:12:12Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'some-user-avatar-url',
+        }),
       });
 
       result.rerender(

@@ -1,8 +1,10 @@
 // @flow
 
 import PullRequestStore from './pull_request_store';
-import GitHubClient from '../fakes/github_client';
 import PullRequest from '../models/pull_request';
+import User from '../models/user';
+
+import GitHubClient from '../fakes/github_client';
 
 describe('PullRequestStore', () => {
   let store: PullRequestStore;
@@ -25,6 +27,9 @@ describe('PullRequestStore', () => {
               title: 'First PR',
               created_at: '2001-01-01T01:01:01Z',
               html_url: 'first-url',
+              user: {
+                avatar_url: 'first-avatar-url'
+              },
             },
             {
               id: 2222,
@@ -32,6 +37,9 @@ describe('PullRequestStore', () => {
               title: 'Second PR',
               created_at: '2002-02-02T02:02:02Z',
               html_url: 'second-url',
+              user: {
+                avatar_url: 'second-avatar-url'
+              },
             },
           ],
           headers: {
@@ -47,6 +55,9 @@ describe('PullRequestStore', () => {
               title: 'Third PR',
               created_at: '2003-03-03T03:03:03Z',
               html_url: 'third-url',
+              user: {
+                avatar_url: 'third-avatar-url'
+              },
             },
           ],
           headers: {
@@ -66,6 +77,9 @@ describe('PullRequestStore', () => {
           title: 'First PR',
           createdAt: '2001-01-01T01:01:01Z',
           url: 'first-url',
+          user: new User({
+            avatarURL: 'first-avatar-url',
+          }),
         }),
         new PullRequest({
           id: 2222,
@@ -73,6 +87,9 @@ describe('PullRequestStore', () => {
           title: 'Second PR',
           createdAt: '2002-02-02T02:02:02Z',
           url: 'second-url',
+          user: new User({
+            avatarURL: 'second-avatar-url',
+          }),
         }),
         new PullRequest({
           id: 3333,
@@ -80,6 +97,9 @@ describe('PullRequestStore', () => {
           title: 'Third PR',
           createdAt: '2003-03-03T03:03:03Z',
           url: 'third-url',
+          user: new User({
+            avatarURL: 'third-avatar-url',
+          }),
         }),
       ]);
 

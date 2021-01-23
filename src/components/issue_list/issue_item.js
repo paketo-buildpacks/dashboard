@@ -32,6 +32,7 @@ export default class IssueItem extends React.Component<Props> {
         </ExternalLink>
         <div className='content'>
           <div className='identifier'>
+            <img className='avatar' src={this.props.issue.user.avatarURL} alt='user-avatar' />
             <div className='number'>#{this.props.issue.number}</div>
             <ExternalLink className='title' href={this.props.issue.url} >
               {this.props.issue.title}

@@ -1,6 +1,8 @@
 // @flow
 
 import PullRequest from '../models/pull_request';
+import User from '../models/user';
+
 import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
 type Props = {|
@@ -31,6 +33,9 @@ export default class PullRequestStore {
           title: pullRequest.title,
           createdAt: pullRequest.created_at,
           url: pullRequest.html_url,
+          user: new User({
+            avatarURL: pullRequest.user.avatar_url,
+          }),
         }));
       }
 

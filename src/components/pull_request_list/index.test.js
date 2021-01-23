@@ -5,12 +5,13 @@ import { render } from '@testing-library/react';
 
 import PullRequestList from '.';
 
+import PullRequest from '../../models/pull_request';
+import Repo from '../../models/repo';
+import User from '../../models/user';
+
 import Cache from '../../fakes/cache';
 import RepoStore from '../../fakes/repo_store';
 import PullRequestStore from '../../fakes/pull_request_store';
-
-import Repo from '../../models/repo';
-import PullRequest from '../../models/pull_request';
 
 describe('PullRequestList', () => {
   let result, resolveRepoList, resolvePullRequestList;
@@ -63,11 +64,17 @@ describe('PullRequestList', () => {
             id: 1111,
             number: 1,
             title: 'First Pull Request',
+            user: {
+              avatarURL: 'first-user-avatar-url',
+            },
           },
           {
             id: 222,
             number: 2,
             title: 'Second Pull Request',
+            user: {
+              avatarURL: 'second-user-avatar-url',
+            },
           },
         ],
       });
@@ -108,6 +115,9 @@ describe('PullRequestList', () => {
           title: 'First Pull Request',
           createdAt: '2001-01-01T01:01:01Z',
           url: 'first-url',
+          user: new User({
+            avatarURL: 'first-user-avatar-url',
+          }),
         }),
         new PullRequest({
           id: 2222,
@@ -115,6 +125,9 @@ describe('PullRequestList', () => {
           title: 'Second Pull Request',
           createdAt: '2002-02-02T02:02:02Z',
           url: 'second-url',
+          user: new User({
+            avatarURL: 'second-user-avatar-url',
+          }),
         }),
       ]);
 

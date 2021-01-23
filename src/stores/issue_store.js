@@ -1,6 +1,8 @@
 // @flow
 
 import Issue from '../models/issue';
+import User from '../models/user';
+
 import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
 type Props = {|
@@ -33,6 +35,9 @@ export default class IssueStore {
             url: issue.html_url,
             createdAt: issue.created_at,
             commentCount: issue.comments,
+            user: new User({
+              avatarURL: issue.user.avatar_url,
+            }),
           }));
         }
       }

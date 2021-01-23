@@ -26,6 +26,7 @@ export default class PullRequestItem extends React.Component<Props> {
         </ExternalLink>
         <div className='content'>
           <div className='identifier'>
+            <img className='avatar' src={this.props.pullRequest.user.avatarURL} alt='user-avatar' />
             <div className='number'>#{this.props.pullRequest.number}</div>
             <ExternalLink className='title' href={this.props.pullRequest.url} >
               {this.props.pullRequest.title}

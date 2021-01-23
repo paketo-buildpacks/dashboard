@@ -5,8 +5,9 @@ import { render } from '@testing-library/react';
 
 import PullRequestItem from './pull_request_item';
 
-import Repo from '../../models/repo';
 import PullRequest from '../../models/pull_request';
+import Repo from '../../models/repo';
+import User from '../../models/user';
 
 describe('PullRequestItem', () => {
   let result;
@@ -27,6 +28,9 @@ describe('PullRequestItem', () => {
       title: 'some-title',
       createdAt: '2020-01-10T12:12:12Z',
       url: 'some-pull-request-url',
+      user: new User({
+        avatarURL: 'some-user-avatar-url',
+      }),
     });
 
     result = render(
@@ -45,6 +49,12 @@ describe('PullRequestItem', () => {
   it('renders the pull request number', () => {
     const number = result.getByText(/#999/i);
     expect(number).toBeInTheDocument();
+  });
+
+  it('renders the user avatar', () => {
+    const avatar = result.getByRole('img', { name: 'user-avatar' });
+    expect(avatar).toBeInTheDocument();
+    expect(avatar).toHaveAttribute('src', 'some-user-avatar-url');
   });
 
   it('renders the pull request repo as a link', () => {

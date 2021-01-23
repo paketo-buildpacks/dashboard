@@ -3,9 +3,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
+import IssueCount from './issue_count';
+
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
-import IssueCount from './issue_count';
+import User from '../../models/user';
+
 import IssueStore from '../../fakes/issue_store';
 import Cache from '../../fakes/cache';
 
@@ -37,6 +40,9 @@ describe('IssueCount', () => {
         url: 'first-url',
         createdAt: '2001-01-01T01:01:01Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'first-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 2222,
@@ -45,6 +51,9 @@ describe('IssueCount', () => {
         url: 'second-url',
         createdAt: '2002-02-02T02:02:02Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'second-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 3333,
@@ -53,6 +62,9 @@ describe('IssueCount', () => {
         url: 'third-url',
         createdAt: '2003-03-03T03:03:03Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'third-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 4444,
@@ -61,6 +73,9 @@ describe('IssueCount', () => {
         url: 'fourth-url',
         createdAt: '2004-04-04T04:04:04Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'fourth-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 5555,
@@ -69,6 +84,9 @@ describe('IssueCount', () => {
         url: 'fifth-url',
         createdAt: '2005-05-05T05:05:05Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'fifth-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 6666,
@@ -77,6 +95,9 @@ describe('IssueCount', () => {
         url: 'sixth-url',
         createdAt: '2006-06-06T06:06:06Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'sixth-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 7777,
@@ -85,6 +106,9 @@ describe('IssueCount', () => {
         url: 'seventh-url',
         createdAt: '2007-07-07T07:07:07Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'seventh-user-avatar-url',
+        }),
       }),
       new Issue({
         id: 8888,
@@ -93,6 +117,9 @@ describe('IssueCount', () => {
         url: 'eighth-url',
         createdAt: '2008-08-08T08:08:08Z',
         commentCount: 0,
+        user: new User({
+          avatarURL: 'eighth-user-avatar-url',
+        }),
       }),
     ];
   });

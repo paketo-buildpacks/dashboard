@@ -2,9 +2,13 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+
+import PullRequestCount from './pull_request_count';
+
 import PullRequest from '../../models/pull_request';
 import Repo from '../../models/repo';
-import PullRequestCount from './pull_request_count';
+import User from '../../models/user';
+
 import PullRequestStore from '../../fakes/pull_request_store';
 import Cache from '../../fakes/cache';
 
@@ -35,6 +39,9 @@ describe('PullRequestCount', () => {
         title: 'First PR',
         createdAt: '2001-01-01T01:01:01Z',
         url: 'first-url',
+        user: new User({
+          avatarURL: 'first-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 2222,
@@ -42,6 +49,9 @@ describe('PullRequestCount', () => {
         title: 'Second PR',
         createdAt: '2002-02-02T02:02:02Z',
         url: 'second-url',
+        user: new User({
+          avatarURL: 'second-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 3333,
@@ -49,6 +59,9 @@ describe('PullRequestCount', () => {
         title: 'Third PR',
         createdAt: '2003-03-03T03:03:03Z',
         url: 'third-url',
+        user: new User({
+          avatarURL: 'third-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 4444,
@@ -56,6 +69,9 @@ describe('PullRequestCount', () => {
         title: 'Fourth PR',
         createdAt: '2004-04-04T04:04:04Z',
         url: 'fourth-url',
+        user: new User({
+          avatarURL: 'fourth-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 5555,
@@ -63,6 +79,9 @@ describe('PullRequestCount', () => {
         title: 'Fifth PR',
         createdAt: '2005-05-05T05:05:05Z',
         url: 'fifth-url',
+        user: new User({
+          avatarURL: 'fifth-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 6666,
@@ -70,6 +89,9 @@ describe('PullRequestCount', () => {
         title: 'Sixth PR',
         createdAt: '2006-06-06T06:06:06Z',
         url: 'sixth-url',
+        user: new User({
+          avatarURL: 'sixth-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 7777,
@@ -77,6 +99,9 @@ describe('PullRequestCount', () => {
         title: 'Seventh PR',
         createdAt: '2007-07-07T07:07:07Z',
         url: 'seventh-url',
+        user: new User({
+          avatarURL: 'seventh-user-avatar-url',
+        }),
       }),
       new PullRequest({
         id: 8888,
@@ -84,6 +109,9 @@ describe('PullRequestCount', () => {
         title: 'Eighth PR',
         createdAt: '2008-08-08T08:08:08Z',
         url: 'eighth-url',
+        user: new User({
+          avatarURL: 'eighth-user-avatar-url',
+        }),
       }),
     ]
   });

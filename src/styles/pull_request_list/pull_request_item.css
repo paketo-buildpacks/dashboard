@@ -10,10 +10,10 @@
 .pull-request-item .repo {
   font-size: 0.7em;
   color: #6C6C6C;
-  margin-bottom: 5px;
 }
 
 .pull-request-item .content {
+  margin-top: 3px;
   display: flex;
   flex-direction: row;
 }
@@ -21,6 +21,14 @@
 .pull-request-item .content .identifier {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.pull-request-item .content .identifier .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-right: 10px;
 }
 
 .pull-request-item .content .identifier .number {
@@ -31,5 +39,5 @@
 .pull-request-item .created-at {
   font-size: 0.7em;
   color: #6C6C6C;
-  margin-top: 5px;
+  margin-top: 3px;
 }

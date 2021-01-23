@@ -3,6 +3,7 @@
 import IssueStore from './issue_store';
 import GitHubClient from '../fakes/github_client';
 import Issue from '../models/issue';
+import User from '../models/user';
 
 describe('IssueStore', () => {
   let store: IssueStore;
@@ -26,6 +27,9 @@ describe('IssueStore', () => {
               html_url: 'first-url',
               created_at: '2011-04-22T13:33:48Z',
               comments: 1,
+              user: {
+                avatar_url: 'first-user-avatar-url',
+              },
             },
             {
               id: 2345,
@@ -34,6 +38,9 @@ describe('IssueStore', () => {
               html_url: 'second-url',
               created_at: '2012-05-26T02:11:22Z',
               comments: 2,
+              user: {
+                avatar_url: 'second-user-avatar-url',
+              },
               pull_request: {},
             },
           ],
@@ -51,6 +58,9 @@ describe('IssueStore', () => {
               html_url: 'third-url',
               created_at: '2013-04-25T03:12:23Z',
               comments: 3,
+              user: {
+                avatar_url: 'third-user-avatar-url',
+              },
             },
           ],
           headers: {
@@ -71,6 +81,9 @@ describe('IssueStore', () => {
           url: 'first-url',
           createdAt: '2011-04-22T13:33:48Z',
           commentCount: 1,
+          user: new User({
+            avatarURL: 'first-user-avatar-url',
+          }),
         }),
         new Issue({
           id: 3456,
@@ -79,6 +92,9 @@ describe('IssueStore', () => {
           url: 'third-url',
           createdAt: '2013-04-25T03:12:23Z',
           commentCount: 3,
+          user: new User({
+            avatarURL: 'third-user-avatar-url',
+          }),
         }),
       ]);
 

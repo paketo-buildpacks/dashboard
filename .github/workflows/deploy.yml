@@ -33,12 +33,17 @@ jobs:
         rm -rf build-environment
 
     - name: Commit
+      id: commit
       run: |
         git config --global user.email "ryan.moran@gmail.com"
         git config --global user.name "Ryan Moran"
 
-        git add --all .
-        git commit --message "Deploying"
+        if [[ -n "$(git status --short)" ]]; then
+          git add --all .
+          git commit --message "Deploying"
+          echo "::set-output name=commit_sha::$(git rev-parse HEAD)"
+        fi
 
     - name: Push
+      if: ${{ steps.commit.outputs.commit_sha != '' }}
       run: git push origin gh-pages

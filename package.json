@@ -12,16 +12,16 @@
     ]
   },
   "dependencies": {
-    "@primer/octicons-react": "11.0.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "flow-bin": "^0.134.0",
+    "@primer/octicons-react": "11.2.0",
+    "@testing-library/jest-dom": "5.11.9",
+    "@testing-library/react": "11.2.3",
+    "@testing-library/user-event": "12.6.2",
+    "flow-bin": "0.143.1",
     "luxon": "1.25.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-router-dom": "5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "4.0.1"
   },
   "eslintConfig": {
     "extends": "react-app"

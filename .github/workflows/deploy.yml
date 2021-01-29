@@ -19,14 +19,20 @@ jobs:
     - name: Build
       run: yarn run build
 
-    - name: Push
+    - name: Prepare
       run: |
-        set -x
-
         mv ./build /tmp
         git clean -ffdx
         git rm -r .
         cp -a /tmp/build/* .
 
-        ls -al .
+    - name: Commit
+      run: |
+        git config --global user.email "ryan.moran@gmail.com"
+        git config --global user.name "Ryan Moran"
 
+        git add --all .
+        git commit --message "Deploying"
+
+    - name: Push
+      run: git push origin gh-pages

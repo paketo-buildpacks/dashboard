@@ -24,6 +24,7 @@ jobs:
         set -x
 
         mv ./build /tmp
+        git clean -ffdx
         git rm -r .
         cp -a /tmp/build/* .
 

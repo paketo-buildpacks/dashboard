@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: yarn install
+
+    - name: Build
+      run: yarn run build
+
+    - name: Push
+      run:
+        mkdir -p /tmp/paketo-dashboard
+        mv ./build /tmp/paketo-dashboard
+        mv ./.git /tmp/paketo-dashboard
+        rm -rf ./*
+        mv /tmp/paketo-dashboard/build/* .
+        mv /tmp/paketo-dashboard/.git .
+        rm -rf /tmp/paketo-dashboard
+
+        ls -al .
+

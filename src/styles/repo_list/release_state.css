@@ -8,8 +8,12 @@
   font-size: 0.8em;
 }
 
+.release-state .commits-behind {
+  color: #CCC;
+}
+
 .release-state .commits-behind.behind {
-  color: #E64B4B;
+  color: #555;
 }
 
 .release-state .commits-behind .octicon {

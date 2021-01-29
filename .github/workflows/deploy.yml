@@ -24,11 +24,11 @@ jobs:
         set -x
 
         mkdir -p /tmp/paketo-dashboard
-        mv ./build /tmp/paketo-dashboard
         mv ./.git /tmp/paketo-dashboard
+        mv ./build /tmp/paketo-dashboard
         rm -rf ./*
-        mv /tmp/paketo-dashboard/build/* .
         mv /tmp/paketo-dashboard/.git .
+        cp -a /tmp/paketo-dashboard/build/* .
         rm -rf /tmp/paketo-dashboard
 
         ls -al .

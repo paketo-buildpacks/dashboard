@@ -20,7 +20,9 @@ jobs:
       run: yarn run build
 
     - name: Push
-      run:
+      run: |
+        set -x
+
         mkdir -p /tmp/paketo-dashboard
         mv ./build /tmp/paketo-dashboard
         mv ./.git /tmp/paketo-dashboard

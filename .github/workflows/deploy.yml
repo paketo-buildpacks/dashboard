@@ -12,19 +12,24 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+
+    - name: Checkout build environment
+      uses: actions/checkout@v2
+      with:
+        ref: main
+        path: build-environment
 
     - name: Install Dependencies
-      run: yarn install
+      run: cd build-environment && yarn install
 
     - name: Build
-      run: yarn run build
+      run: cd build-environment && yarn run build
 
-    - name: Prepare
+    - name: Update
       run: |
-        mv ./build /tmp
-        git clean -ffdx
-        git rm -r .
-        cp -a /tmp/build/* .
+        cp -a build-environment/build/* .
 
     - name: Commit
       run: |

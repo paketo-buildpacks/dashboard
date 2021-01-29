@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/paketo-dashboard/static/css/main.0bb4a149.chunk.css",
+    "main.css": "/paketo-dashboard/static/css/main.5c241d69.chunk.css",
     "main.js": "/paketo-dashboard/static/js/main.99cef814.chunk.js",
     "main.js.map": "/paketo-dashboard/static/js/main.99cef814.chunk.js.map",
     "runtime-main.js": "/paketo-dashboard/static/js/runtime-main.acb0e622.js",
@@ -8,13 +8,13 @@
     "static/js/2.48dcb3ff.chunk.js": "/paketo-dashboard/static/js/2.48dcb3ff.chunk.js",
     "static/js/2.48dcb3ff.chunk.js.map": "/paketo-dashboard/static/js/2.48dcb3ff.chunk.js.map",
     "index.html": "/paketo-dashboard/index.html",
-    "static/css/main.0bb4a149.chunk.css.map": "/paketo-dashboard/static/css/main.0bb4a149.chunk.css.map",
+    "static/css/main.5c241d69.chunk.css.map": "/paketo-dashboard/static/css/main.5c241d69.chunk.css.map",
     "static/js/2.48dcb3ff.chunk.js.LICENSE.txt": "/paketo-dashboard/static/js/2.48dcb3ff.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.acb0e622.js",
     "static/js/2.48dcb3ff.chunk.js",
-    "static/css/main.0bb4a149.chunk.css",
+    "static/css/main.5c241d69.chunk.css",
     "static/js/main.99cef814.chunk.js"
   ]
 }

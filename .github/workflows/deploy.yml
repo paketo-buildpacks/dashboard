@@ -30,6 +30,7 @@ jobs:
     - name: Update
       run: |
         cp -a build-environment/build/* .
+        rm -rf build-environment
 
     - name: Commit
       run: |

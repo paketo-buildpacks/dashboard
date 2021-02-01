@@ -35,8 +35,8 @@ jobs:
     - name: Commit
       id: commit
       run: |
-        git config --global user.email "ryan.moran@gmail.com"
-        git config --global user.name "Ryan Moran"
+        git config --global user.email "paketobuildpacks@gmail.com"
+        git config --global user.name "paketo-bot"
 
         if [[ -n "$(git status --short)" ]]; then
           git add --all .

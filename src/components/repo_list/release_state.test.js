@@ -57,27 +57,23 @@ describe('ReleaseState', () => {
       );
     });
 
-    it('renders the node as a link to the repo releases', () => {
-      const node = result.getByRole('link', { name: 'release-state' });
-
-      expect(node).toHaveAttribute('href', 'some-repo-url/releases');
-    });
-
     it('renders the tag of the release', () => {
-      const tag = result.getByRole('generic', { name: 'tag' });
+      const tag = result.getByRole('link', { name: 'tag' });
       expect(tag).toHaveTextContent(/v1\.2\.3/i);
+      expect(tag).toHaveAttribute('href', 'some-repo-url/releases');
     });
 
     it('renders the number of commits since the release', () => {
-      const count = result.getByRole('generic', { name: 'commits-behind' });
+      const count = result.getByRole('link', { name: 'commits-behind' });
       expect(count).toHaveTextContent(/2/i);
       expect(count).toHaveClass('behind');
+      expect(count).toHaveAttribute('href', 'some-repo-url/compare/v1.2.3...main');
     });
   });
 
   describe('when the promise is not resolved', () => {
     it('renders an emdash', () => {
-      const tag = result.getByRole('generic', { name: 'tag' });
+      const tag = result.getByRole('link', { name: 'tag' });
       expect(tag).toHaveTextContent(/—/i);
     });
   });
@@ -99,12 +95,12 @@ describe('ReleaseState', () => {
     });
 
     it('renders the tag of the release', () => {
-      const tag = result.getByRole('generic', { name: 'tag' });
+      const tag = result.getByRole('link', { name: 'tag' });
       expect(tag).toHaveTextContent(/v1\.2\.3/i);
     });
 
     it('renders the number of commits since the release', () => {
-      const count = result.getByRole('generic', { name: 'commits-behind' });
+      const count = result.getByRole('link', { name: 'commits-behind' });
       expect(count).toHaveTextContent(/0/i);
       expect(count).not.toHaveClass('behind');
     });

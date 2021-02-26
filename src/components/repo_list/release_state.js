@@ -60,19 +60,26 @@ export default class ReleaseState extends React.Component<Props, State> {
     }
 
     return (
-      <ExternalLink
+      <div
         className='release-state'
-        href={`${this.props.repo.url}/releases`}
         aria-label='release-state'
       >
-        <div className='tag' aria-label='tag'>
+        <ExternalLink
+          className='tag'
+          aria-label='tag'
+          href={`${this.props.repo.url}/releases`}
+        >
           {this.state.release.tag}
-        </div>
-        <div className={commitsClass} aria-label='commits-behind'>
+        </ExternalLink>
+        <ExternalLink
+          className={commitsClass}
+          aria-label='commits-behind'
+          href={`${this.props.repo.url}/compare/${this.state.release.tag}...main`}
+        >
           {this.state.release.commitsBehind}
           <GitCommitIcon size={16} />
-        </div>
-      </ExternalLink>
+        </ExternalLink>
+      </div>
     );
   }
 }

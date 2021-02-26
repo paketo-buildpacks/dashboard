@@ -54,7 +54,7 @@ describe('RepoItem', () => {
   });
 
   it('renders the release state', () => {
-    const latestRelease = result.getByRole('link', { name: 'release-state' });
+    const latestRelease = result.getByRole('generic', { name: 'release-state' });
     expect(latestRelease).toBeInTheDocument();
   });
 });

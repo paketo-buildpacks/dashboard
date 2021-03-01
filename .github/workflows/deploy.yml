@@ -13,6 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
         ref: gh-pages
 
     - name: Checkout build environment

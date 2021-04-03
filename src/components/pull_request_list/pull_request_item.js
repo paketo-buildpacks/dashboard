@@ -6,6 +6,7 @@ import PullRequest from '../../models/pull_request';
 import Repo from '../../models/repo';
 
 import ExternalLink from '../lib/external_link';
+import LabelItem from '../lib/label_item';
 
 import '../../styles/pull_request_list/pull_request_item.css';
 
@@ -19,6 +20,10 @@ export default class PullRequestItem extends React.Component<Props> {
     const createdAtRelative = this.props.pullRequest.createdAt.toRelative();
     const createdAtDate = this.props.pullRequest.createdAt.toLocaleString({ month: 'short', day: 'numeric', year: 'numeric' });
 
+    const labels: Node = this.props.pullRequest.labels.map(l => (
+      <LabelItem key={l.id} label={l} />
+    ));
+
     return (
       <div className='pull-request-item'>
         <ExternalLink className='repo' href={this.props.repo.url} >
@@ -31,6 +36,7 @@ export default class PullRequestItem extends React.Component<Props> {
             <ExternalLink className='title' href={this.props.pullRequest.url} >
               {this.props.pullRequest.title}
             </ExternalLink>
+            {labels}
           </div>
         </div>
         <div className='created-at'>opened {createdAtRelative} ({createdAtDate})</div>

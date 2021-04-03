@@ -2,6 +2,7 @@
 
 import Issue from '../models/issue';
 import User from '../models/user';
+import Label from '../models/label';
 
 import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
@@ -28,6 +29,15 @@ export default class IssueStore {
 
       for (const issue of response.data) {
         if (!issue.pull_request) {
+          const labels: Label[] = [];
+          for (const label of issue.labels) {
+            labels.push(new Label({
+              id: label.id,
+              name: label.name,
+              color: label.color,
+            }));
+          }
+
           issues.push(new Issue({
             id: issue.id,
             number: issue.number,
@@ -38,6 +48,7 @@ export default class IssueStore {
             user: new User({
               avatarURL: issue.user.avatar_url,
             }),
+            labels: labels,
           }));
         }
       }

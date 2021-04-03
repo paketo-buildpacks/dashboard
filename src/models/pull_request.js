@@ -3,6 +3,7 @@
 import { DateTime } from 'luxon';
 
 import User from './user';
+import Label from './label';
 
 type Props = {|
   id: number,
@@ -11,6 +12,7 @@ type Props = {|
   createdAt: string,
   url: string,
   user: User,
+  labels: Label[],
 |};
 
 export default class PullRequest {
@@ -20,6 +22,7 @@ export default class PullRequest {
   createdAt: DateTime;
   url: string;
   user: User;
+  labels: Label[];
 
   constructor(props: Props) {
     this.id = props.id;
@@ -28,5 +31,6 @@ export default class PullRequest {
     this.createdAt = DateTime.fromISO(props.createdAt);
     this.url = props.url;
     this.user = props.user;
+    this.labels = props.labels || [];
   }
 }

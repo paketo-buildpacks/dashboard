@@ -3,6 +3,7 @@
 import PullRequestStore from './pull_request_store';
 import PullRequest from '../models/pull_request';
 import User from '../models/user';
+import Label from '../models/label';
 
 import GitHubClient from '../fakes/github_client';
 
@@ -30,6 +31,13 @@ describe('PullRequestStore', () => {
               user: {
                 avatar_url: 'first-avatar-url'
               },
+              labels: [
+                {
+                  id: 1234,
+                  name: 'first-label-name',
+                  color: 'first-label-color',
+                },
+              ],
             },
             {
               id: 2222,
@@ -40,6 +48,7 @@ describe('PullRequestStore', () => {
               user: {
                 avatar_url: 'second-avatar-url'
               },
+              labels: [],
             },
           ],
           headers: {
@@ -58,6 +67,13 @@ describe('PullRequestStore', () => {
               user: {
                 avatar_url: 'third-avatar-url'
               },
+              labels: [
+                {
+                  id: 3456,
+                  name: 'third-label-name',
+                  color: 'third-label-color',
+                },
+              ],
             },
           ],
           headers: {
@@ -80,6 +96,13 @@ describe('PullRequestStore', () => {
           user: new User({
             avatarURL: 'first-avatar-url',
           }),
+          labels: [
+            new Label({
+              id: 1234,
+              name: 'first-label-name',
+              color: 'first-label-color',
+            }),
+          ],
         }),
         new PullRequest({
           id: 2222,
@@ -90,6 +113,7 @@ describe('PullRequestStore', () => {
           user: new User({
             avatarURL: 'second-avatar-url',
           }),
+          labels: [],
         }),
         new PullRequest({
           id: 3333,
@@ -100,6 +124,13 @@ describe('PullRequestStore', () => {
           user: new User({
             avatarURL: 'third-avatar-url',
           }),
+          labels: [
+            new Label({
+              id: 3456,
+              name: 'third-label-name',
+              color: 'third-label-color',
+            }),
+          ],
         }),
       ]);
 

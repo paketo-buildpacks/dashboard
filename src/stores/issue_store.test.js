@@ -4,6 +4,7 @@ import IssueStore from './issue_store';
 import GitHubClient from '../fakes/github_client';
 import Issue from '../models/issue';
 import User from '../models/user';
+import Label from '../models/label';
 
 describe('IssueStore', () => {
   let store: IssueStore;
@@ -30,6 +31,13 @@ describe('IssueStore', () => {
               user: {
                 avatar_url: 'first-user-avatar-url',
               },
+              labels: [
+                {
+                  id: 4321,
+                  name: 'first-label-name',
+                  color: 'first-label-color',
+                },
+              ],
             },
             {
               id: 2345,
@@ -42,6 +50,7 @@ describe('IssueStore', () => {
                 avatar_url: 'second-user-avatar-url',
               },
               pull_request: {},
+              labels: [],
             },
           ],
           headers: {
@@ -61,6 +70,13 @@ describe('IssueStore', () => {
               user: {
                 avatar_url: 'third-user-avatar-url',
               },
+              labels: [
+                {
+                  id: 9876,
+                  name: 'third-label-name',
+                  color: 'third-label-color',
+                },
+              ],
             },
           ],
           headers: {
@@ -84,6 +100,13 @@ describe('IssueStore', () => {
           user: new User({
             avatarURL: 'first-user-avatar-url',
           }),
+          labels: [
+            new Label({
+              id: 4321,
+              name: 'first-label-name',
+              color: 'first-label-color',
+            }),
+          ],
         }),
         new Issue({
           id: 3456,
@@ -95,6 +118,13 @@ describe('IssueStore', () => {
           user: new User({
             avatarURL: 'third-user-avatar-url',
           }),
+          labels: [
+            new Label({
+              id: 9876,
+              name: 'third-label-name',
+              color: 'third-label-color',
+            }),
+          ],
         }),
       ]);
 

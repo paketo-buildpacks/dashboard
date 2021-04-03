@@ -42,6 +42,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'first-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 2222,
@@ -52,6 +53,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'second-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 3333,
@@ -62,6 +64,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'third-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 4444,
@@ -72,6 +75,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'fourth-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 5555,
@@ -82,6 +86,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'fifth-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 6666,
@@ -92,6 +97,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'sixth-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 7777,
@@ -102,6 +108,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'seventh-user-avatar-url',
         }),
+        labels: [],
       }),
       new PullRequest({
         id: 8888,
@@ -112,6 +119,7 @@ describe('PullRequestCount', () => {
         user: new User({
           avatarURL: 'eighth-user-avatar-url',
         }),
+        labels: [],
       }),
     ]
   });

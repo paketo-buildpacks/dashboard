@@ -6,6 +6,7 @@ import Issue from '../../models/issue';
 import Repo from '../../models/repo';
 
 import ExternalLink from '../lib/external_link';
+import LabelItem from '../lib/label_item';
 import { CommentIcon } from '@primer/octicons-react';
 
 import '../../styles/issue_list/issue_item.css';
@@ -25,6 +26,10 @@ export default class IssueItem extends React.Component<Props> {
       commentCountClass += ' none';
     }
 
+    const labels: Node = this.props.issue.labels.map(l => (
+      <LabelItem key={l.id} label={l} />
+    ));
+
     return (
       <div className='issue-item'>
         <ExternalLink className='repo' href={this.props.repo.url} >
@@ -37,6 +42,7 @@ export default class IssueItem extends React.Component<Props> {
             <ExternalLink className='title' href={this.props.issue.url} >
               {this.props.issue.title}
             </ExternalLink>
+            {labels}
           </div>
           <div className={commentCountClass} aria-label='comment-count'>
             <div className='count'>{this.props.issue.commentCount}</div>

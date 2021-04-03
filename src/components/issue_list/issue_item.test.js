@@ -7,6 +7,7 @@ import IssueItem from './issue_item';
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
 import User from '../../models/user';
+import Label from '../../models/label';
 
 describe('IssueItem', () => {
   let result;
@@ -31,6 +32,13 @@ describe('IssueItem', () => {
       user: new User({
         avatarURL: 'some-user-avatar-url',
       }),
+      labels: [
+        new Label({
+          id: 3456,
+          name: 'some-label-name',
+          color: 'some-label-color',
+        }),
+      ],
     });
 
     result = render(
@@ -67,33 +75,16 @@ describe('IssueItem', () => {
     expect(date).toBeInTheDocument();
   });
 
-  describe('when there are comments', () => {
-    beforeEach(() => {
-      issue = new Issue({
-        id: 5678,
-        title: 'some-title',
-        number: 999,
-        url: 'some-url',
-        createdAt: '2020-01-10T12:12:12Z',
-        commentCount: 5,
-        user: new User({
-          avatarURL: 'some-user-avatar-url',
-        }),
-      });
+  it('renders the labels', () => {
+    const label = result.getByRole('generic', { name: 'github-label' });
+    expect(label).toBeInTheDocument();
+    expect(label).toHaveTextContent(/some-label-name/);
+  });
 
-      result.rerender(
-        <IssueItem
-          issue={issue}
-          repo={repo}
-        />
-      );
-    });
-
-    it('renders the number of comments', () => {
-        const commentCount = result.getByRole('generic', { name: 'comment-count' });
-        expect(commentCount).toHaveTextContent(/5/i);
-        expect(commentCount).not.toHaveClass('none');
-    });
+  it('renders the number of comments', () => {
+    const commentCount = result.getByRole('generic', { name: 'comment-count' });
+    expect(commentCount).toHaveTextContent(/3/i);
+    expect(commentCount).not.toHaveClass('none');
   });
 
   describe('when there are no comments', () => {
@@ -108,6 +99,7 @@ describe('IssueItem', () => {
         user: new User({
           avatarURL: 'some-user-avatar-url',
         }),
+        labels: [],
       });
 
       result.rerender(
@@ -119,9 +111,9 @@ describe('IssueItem', () => {
     });
 
     it('does not render the number of comments', () => {
-        const commentCount = result.getByRole('generic', { name: 'comment-count' });
-        expect(commentCount).toHaveTextContent(/0/i);
-        expect(commentCount).toHaveClass('none');
+      const commentCount = result.getByRole('generic', { name: 'comment-count' });
+      expect(commentCount).toHaveTextContent(/0/i);
+      expect(commentCount).toHaveClass('none');
     });
   });
 });

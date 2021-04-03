@@ -1,0 +1,9 @@
+.github-label {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  border-width: 2px;
+  border-style: solid;
+}

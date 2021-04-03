@@ -118,6 +118,7 @@ describe('PullRequestList', () => {
           user: new User({
             avatarURL: 'first-user-avatar-url',
           }),
+          labels: [],
         }),
         new PullRequest({
           id: 2222,
@@ -128,6 +129,7 @@ describe('PullRequestList', () => {
           user: new User({
             avatarURL: 'second-user-avatar-url',
           }),
+          labels: [],
         }),
       ]);
 

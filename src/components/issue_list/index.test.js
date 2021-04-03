@@ -7,6 +7,7 @@ import IssueList from '.';
 import Repo from '../../models/repo';
 import Issue from '../../models/issue';
 import User from '../../models/user';
+import Label from '../../models/label';
 
 import RepoStore from '../../fakes/repo_store';
 import IssueStore from '../../fakes/issue_store';
@@ -67,6 +68,13 @@ describe('IssueList', () => {
             user: {
               avatarURL: 'first-user-avatar-url',
             },
+            labels: [
+              {
+                id: 1234,
+                name: 'first-label-name',
+                color: 'first-label-color',
+              }
+            ],
           },
           {
             id: 2222,
@@ -76,6 +84,7 @@ describe('IssueList', () => {
             user: {
               avatarURL: 'second-user-avatar-url',
             },
+            labels: [],
           },
         ],
       });
@@ -120,6 +129,13 @@ describe('IssueList', () => {
           user: new User({
             avatarURL: 'first-user-avatar-url',
           }),
+          labels: [
+            new Label({
+              id: 1234,
+              name: 'first-label-name',
+              color: 'first-label-name',
+            }),
+          ],
         }),
         new Issue({
           id: 2222,
@@ -131,6 +147,7 @@ describe('IssueList', () => {
           user: new User({
             avatarURL: 'second-user-avatar-url',
           }),
+          labels: [],
         }),
       ]);
 

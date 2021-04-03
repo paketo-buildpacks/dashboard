@@ -43,6 +43,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'first-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 2222,
@@ -54,6 +55,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'second-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 3333,
@@ -65,6 +67,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'third-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 4444,
@@ -76,6 +79,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'fourth-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 5555,
@@ -87,6 +91,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'fifth-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 6666,
@@ -98,6 +103,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'sixth-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 7777,
@@ -109,6 +115,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'seventh-user-avatar-url',
         }),
+        labels: [],
       }),
       new Issue({
         id: 8888,
@@ -120,6 +127,7 @@ describe('IssueCount', () => {
         user: new User({
           avatarURL: 'eighth-user-avatar-url',
         }),
+        labels: [],
       }),
     ];
   });

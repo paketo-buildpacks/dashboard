@@ -8,6 +8,7 @@ import PullRequestItem from './pull_request_item';
 import PullRequest from '../../models/pull_request';
 import Repo from '../../models/repo';
 import User from '../../models/user';
+import Label from '../../models/label';
 
 describe('PullRequestItem', () => {
   let result;
@@ -31,6 +32,13 @@ describe('PullRequestItem', () => {
       user: new User({
         avatarURL: 'some-user-avatar-url',
       }),
+      labels: [
+        new Label({
+          id: 1111,
+          name: 'some-label-name',
+          color: 'some-label-color',
+        }),
+      ],
     });
 
     result = render(
@@ -65,5 +73,11 @@ describe('PullRequestItem', () => {
   it('renders the creation date', () => {
     const date = result.getByText(/opened .* ago \(Jan 10, 2020\)/i);
     expect(date).toBeInTheDocument();
+  });
+
+  it('renders the labels', () => {
+    const label = result.getByRole('generic', { name: 'github-label' });
+    expect(label).toBeInTheDocument();
+    expect(label).toHaveTextContent(/some-label-name/);
   });
 });

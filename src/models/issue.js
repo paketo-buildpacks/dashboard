@@ -3,6 +3,7 @@
 import { DateTime } from 'luxon';
 
 import User from './user';
+import Label from './label';
 
 type Props = {|
   id: number,
@@ -12,6 +13,7 @@ type Props = {|
   createdAt: string,
   commentCount: number,
   user: User,
+  labels: Label[],
 |};
 
 export default class Issue {
@@ -22,6 +24,7 @@ export default class Issue {
   createdAt: DateTime;
   commentCount: number;
   user: User;
+  labels: Label[];
 
   constructor(props: Props) {
     this.id = props.id;
@@ -31,5 +34,6 @@ export default class Issue {
     this.createdAt = DateTime.fromISO(props.createdAt);
     this.commentCount = props.commentCount;
     this.user = props.user;
+    this.labels = props.labels || [];
   }
 }

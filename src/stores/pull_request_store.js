@@ -2,6 +2,7 @@
 
 import PullRequest from '../models/pull_request';
 import User from '../models/user';
+import Label from '../models/label';
 
 import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
@@ -27,6 +28,15 @@ export default class PullRequestStore {
       });
 
       for (const pullRequest of response.data) {
+        const labels: Label[] = [];
+        for (const label of pullRequest.labels) {
+          labels.push(new Label({
+            id: label.id,
+            name: label.name,
+            color: label.color,
+          }));
+        }
+
         pullRequests.push(new PullRequest({
           id: pullRequest.id,
           number: pullRequest.number,
@@ -36,6 +46,7 @@ export default class PullRequestStore {
           user: new User({
             avatarURL: pullRequest.user.avatar_url,
           }),
+          labels: labels,
         }));
       }
 

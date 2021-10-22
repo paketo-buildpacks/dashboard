@@ -10,14 +10,22 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+    - name: Setup Go
+      uses: actions/setup-go@v2.1.3
+      with:
+        go-version: 1.17.x
+
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Install Dependencies
-      run: yarn install
+    - name: Install Frontend Dependencies
+      run: cd web && yarn install
 
-    - name: Run Tests
-      run: CI=true yarn run test
+    - name: Run Frontend Tests
+      run: cd web && CI=true yarn run test
 
-    - name: Type Check
-      run: yarn run flow
+    - name: Type Check Frontend
+      run: cd web && yarn run flow
+
+    - name: Run Backend Tests
+      run: go test -v ./server

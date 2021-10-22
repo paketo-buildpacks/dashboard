@@ -16,35 +16,34 @@ jobs:
         token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
         ref: gh-pages
 
-    - name: Checkout build environment
-      uses: actions/checkout@v2
+    - name: Authenticate with GCR
+      env:
+        GCR_PUSH_BOT_JSON_KEY: ${{ secrets.GCR_PUSH_BOT_JSON_KEY }}
+      run: |
+        echo "${GCR_PUSH_BOT_JSON_KEY}" | docker login --username _json_key --password-stdin gcr.io
+
+    - name: Setup pack
+      uses: buildpacks/github-actions/setup-pack@v4.1.0
+
+    - name: Pack Build
+      run: |
+        pack build gcr.io/paketo-buildpacks/dashboard \
+          --builder paketobuildpacks/builder:buildpackless-base \
+          --publish
+
+    - name: Setup gcloud
+      uses: google-github-actions/setup-gcloud@v0.2.1
       with:
-        ref: main
-        path: build-environment
+        project_id: paketo-buildpacks
+        service_account_key: ${{ secrets.GOOGLE_CLOUD_RUN_SERVICE_ACCOUNT_KEY }}
 
-    - name: Install Dependencies
-      run: cd build-environment && yarn install
-
-    - name: Build
-      run: cd build-environment && yarn run build
-
-    - name: Update
+    - name: Deploy
+      env:
+        GITHUB_CLIENT_ID: ${{ secrets.DASHBOARD_GITHUB_CLIENT_ID }}
+        GITHUB_CLIENT_SECRET: ${{ secrets.DASHBOARD_GITHUB_CLIENT_SECRET }}
+        REDIRECT_URI: ${{ secrets.DASHBOARD_REDIRECT_URI }}
       run: |
-        cp -a build-environment/build/* .
-        rm -rf build-environment
-
-    - name: Commit
-      id: commit
-      run: |
-        git config --global user.email "paketobuildpacks@gmail.com"
-        git config --global user.name "paketo-bot"
-
-        if [[ -n "$(git status --short)" ]]; then
-          git add --all .
-          git commit --message "Deploying"
-          echo "::set-output name=commit_sha::$(git rev-parse HEAD)"
-        fi
-
-    - name: Push
-      if: ${{ steps.commit.outputs.commit_sha != '' }}
-      run: git push origin gh-pages
+        gcloud run services update dashboard \
+          --region us-central1 \
+          --image gcr.io/paketo-buildpacks/dashboard:latest \
+          --set-env-vars="GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID},GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET},REDIRECT_URI=${REDIRECT_URI}"

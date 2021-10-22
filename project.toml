@@ -1,0 +1,45 @@
+[project]
+  id = "io.paketo.dashboard"
+  name = "Paketo Dashboard"
+
+[build]
+  exclude = [
+    "web/build",
+    "web/node_modules"
+  ]
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/node-engine"
+    uri = "urn:cnb:registry:paketo-buildpacks/node-engine"
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/yarn"
+    uri = "urn:cnb:registry:paketo-buildpacks/yarn"
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/yarn-install"
+    uri = "urn:cnb:registry:paketo-buildpacks/yarn-install"
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/node-run-script"
+    uri = "urn:cnb:registry:paketo-buildpacks/node-run-script"
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/go-dist"
+    uri = "urn:cnb:registry:paketo-buildpacks/go-dist"
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/go-mod-vendor"
+    uri = "urn:cnb:registry:paketo-buildpacks/go-mod-vendor"
+
+  [[build.buildpacks]]
+    id = "paketo-buildpacks/go-build"
+    uri = "urn:cnb:registry:paketo-buildpacks/go-build"
+
+  [[build.env]]
+    name = "BP_NODE_PROJECT_PATH"
+    value = "web"
+
+  [[build.env]]
+    name = "BP_NODE_RUN_SCRIPTS"
+    value = "build"

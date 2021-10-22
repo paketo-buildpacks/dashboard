@@ -1,7 +1,5 @@
 // @flow
 
-import { StorageInterface } from '../lib/storage';
-
 export type GitHubClientRequest = {
   method: string,
   path: string,
@@ -16,22 +14,17 @@ export type GitHubClientResponse = {
 };
 
 type Props = {|
-  storage: StorageInterface,
+  token: string,
 |};
 
 export default class GitHubClient {
-  storage: StorageInterface;
-  worker: {
-    do: (token: ?string, method: string, path: string) => Promise<GitHubClientResponse>
-  };
+  token: string;
 
   constructor(props: Props) {
-    this.storage = props.storage;
+    this.token = props.token;
   }
 
   async do(request: GitHubClientRequest): Promise<GitHubClientResponse> {
-    const token = this.storage.getItem('token') || '';
-
     let url = request.path
     if (url.startsWith('/')) {
       url = `https://api.github.com${url}`;
@@ -40,7 +33,7 @@ export default class GitHubClient {
     const response = await fetch(url, {
       method: request.method,
       headers: {
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${this.token}`,
       },
     })
 

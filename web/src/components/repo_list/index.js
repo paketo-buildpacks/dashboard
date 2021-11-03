@@ -58,7 +58,7 @@ export default class RepoList extends React.Component<Props, State> {
 
   componentDidMount() {
     this.load();
-    this.interval = this.props.timer.setInterval(this.load.bind(this), 900000);
+    this.interval = this.props.timer.setInterval(() => this.load(), 900000);
   }
 
   componentWillUnmount() {

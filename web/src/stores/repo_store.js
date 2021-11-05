@@ -30,6 +30,7 @@ export default class RepoStore {
           name: repo.full_name,
           url: repo.html_url,
           openIssuesCount: repo.open_issues_count,
+          topics: repo.topics,
         }));
       }
 

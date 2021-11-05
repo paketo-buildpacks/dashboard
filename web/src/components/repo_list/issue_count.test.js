@@ -30,6 +30,7 @@ describe('IssueCount', () => {
       name: 'some-org/some-repo',
       url: 'some-url',
       openIssuesCount: 3,
+      topics: ["some-topic"],
     });
 
     issues = [

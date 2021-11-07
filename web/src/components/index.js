@@ -21,6 +21,7 @@ import { StorageInterface } from '../lib/storage';
 
 type Props = {|
   repoStore: RepoStoreInterface,
+  // topicStore: TopicStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
   releaseStore: ReleaseStoreInterface,
@@ -61,6 +62,7 @@ class App extends React.Component<Props> {
             <Route path={`${root}/`}>
               <RepoList
                 repoStore={this.props.repoStore}
+                // topicStore={this.props.topicStore}
                 issueStore={this.props.issueStore}
                 pullRequestStore={this.props.pullRequestStore}
                 releaseStore={this.props.releaseStore}

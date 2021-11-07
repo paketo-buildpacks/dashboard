@@ -29,8 +29,6 @@ export default class RepoItem extends React.Component<Props> {
 
     const org = parts[0];
     const repo = parts[1];
-    const topics = this.props.repo.topics
-
     return (
       <div className='repo-item'>
         <div className='org'> {org} </div>
@@ -56,8 +54,5 @@ export default class RepoItem extends React.Component<Props> {
         />
       </div>
     );
-
-      // TODO: get rid of this
-        // <div className='topics'> Repo Topics: {topics} </div>
   }
 }

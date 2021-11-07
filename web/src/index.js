@@ -35,6 +35,7 @@ async function run() {
   const cache = new Cache({ storage: storage });
 
   const repoStore = new RepoStore({ client: gitHubClient });
+  // const topicStore = new TopicStore({ repoStore: repoStore });
   const issueStore = new IssueStore({ client: gitHubClient });
   const pullRequestStore = new PullRequestStore({ client: gitHubClient });
   const releaseStore = new ReleaseStore({ client: gitHubClient });

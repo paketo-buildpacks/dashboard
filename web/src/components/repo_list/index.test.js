@@ -4,9 +4,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Repo from '../../models/repo';
+import Topic from '../../models/topic';
 import RepoList from '.';
 
 import RepoStore from '../../fakes/repo_store';
+import TopicStore from '../../fakes/topic_store';
 import IssueStore from '../../fakes/issue_store';
 import PullRequestStore from '../../fakes/pull_request_store';
 import ReleaseStore from '../../fakes/release_store';
@@ -14,8 +16,9 @@ import Timer from '../../fakes/timer';
 import Cache from '../../fakes/cache';
 
 describe('RepoList', () => {
-  let result, resolve;
+  let result, resolve, topicResolve;
   let repoStore: RepoStore;
+  let topicStore: TopicStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
   let releaseStore: ReleaseStore;
@@ -25,6 +28,8 @@ describe('RepoList', () => {
   beforeEach(() => {
     repoStore = new RepoStore();
     repoStore.listCall.returns.promises.push(new Promise((res, rej) => { resolve = res; }));
+    topicStore = new TopicStore();
+    topicStore.listCall.returns.promises.push(new Promise((res, rej) => { topicResolve = res; }));
 
     timer = new Timer();
     timer.setIntervalCall.returns.id = 1234;
@@ -40,6 +45,7 @@ describe('RepoList', () => {
       result = render(
         <RepoList
           repoStore={repoStore}
+          topicStore={topicStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           releaseStore={releaseStore}
@@ -74,10 +80,21 @@ describe('RepoList', () => {
           topics: ["second-topic"],
         }),
       ]);
+      topicResolve([
+        new Topic({
+          id: "first-topic",
+          repos: ["First Repository"],
+        }),
+        new Topic({
+          id: "second-topic",
+          repos: ["Second Repository"],
+        }),
+      ]);
 
       result = render(
         <RepoList
           repoStore={repoStore}
+          topicStore={topicStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           releaseStore={releaseStore}
@@ -87,12 +104,21 @@ describe('RepoList', () => {
       );
     });
 
-    it('renders a list of repos', () => {
+    it('renders a list of repos and associated topics', () => {
       const first = result.getByText(/First Repository/i);
       expect(first).toBeInTheDocument();
 
       const second = result.getByText(/Second Repository/i);
       expect(second).toBeInTheDocument();
+
+      const allTopic = result.getByText(/All/i);
+      expect(allTopic).toBeInTheDocument();
+
+      const firstTopic = result.getByText(/first-topic/i);
+      expect(firstTopic).toBeInTheDocument();
+
+      const secondTopic = result.getByText(/second-topic/i);
+      expect(secondTopic).toBeInTheDocument();
     });
 
     describe('when the timer goes off', () => {
@@ -114,6 +140,7 @@ describe('RepoList', () => {
       result = render(
         <RepoList
           repoStore={repoStore}
+          topicStore={topicStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           releaseStore={releaseStore}

@@ -158,7 +158,7 @@ export default class RepoList extends React.Component<Props, State> {
   render(): Node {
 
     let items = (<div className='loading'>...</div>);
-    let optionTemplate = [<option value="">All</option>];
+    let optionTemplate = [<option key="all" value="">All</option>];
 
     if (!this.state.loading) {
         items = this.state.repos
@@ -175,7 +175,7 @@ export default class RepoList extends React.Component<Props, State> {
         ));
 
       optionTemplate.push(this.state.topics.map((v) => (
-        <option value={v.id}>{v.id}</option>
+        <option key={v.id} value={v.id}>{v.id}</option>
       )));
     }
     return (
@@ -187,7 +187,7 @@ export default class RepoList extends React.Component<Props, State> {
           </button >
         </div>
         <div>
-         <select id="topics" onChange={this.handleFilter} value={this.state.selectValue}>{optionTemplate}</select>
+         <select key="topics" id="topics" onChange={this.handleFilter} value={this.state.selectValue}>{optionTemplate}</select>
         </div>
         <div className='list'>
           {items}

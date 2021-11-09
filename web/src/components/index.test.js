@@ -7,6 +7,7 @@ import userEvent from '@testing-library/user-event';
 import App from '.';
 
 import RepoStore from '../fakes/repo_store';
+import TopicStore from '../fakes/topic_store';
 import IssueStore from '../fakes/issue_store';
 import PullRequestStore from '../fakes/pull_request_store';
 import ReleaseStore from '../fakes/release_store';
@@ -17,6 +18,7 @@ import Storage from '../fakes/storage';
 describe('App', () => {
   let result;
   let repoStore: RepoStore;
+  let topicStore: TopicStore;
   let issueStore: IssueStore;
   let pullRequestStore: PullRequestStore;
   let releaseStore: ReleaseStore;
@@ -26,6 +28,7 @@ describe('App', () => {
 
   beforeEach(() => {
     repoStore = new RepoStore();
+    topicStore = new TopicStore();
     issueStore = new IssueStore();
     pullRequestStore = new PullRequestStore();
     timer = new Timer();
@@ -36,6 +39,7 @@ describe('App', () => {
       <MemoryRouter>
         <App
           repoStore={repoStore}
+          topicStore={topicStore}
           issueStore={issueStore}
           pullRequestStore={pullRequestStore}
           releaseStore={releaseStore}

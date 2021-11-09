@@ -10,6 +10,7 @@ import App from './components';
 
 import GitHubClient from './lib/github_client';
 import RepoStore from './stores/repo_store';
+import TopicStore from './stores/topic_store';
 import IssueStore from './stores/issue_store';
 import PullRequestStore from './stores/pull_request_store';
 import ReleaseStore from './stores/release_store';
@@ -35,7 +36,7 @@ async function run() {
   const cache = new Cache({ storage: storage });
 
   const repoStore = new RepoStore({ client: gitHubClient });
-  // const topicStore = new TopicStore({ repoStore: repoStore });
+  const topicStore = new TopicStore({});
   const issueStore = new IssueStore({ client: gitHubClient });
   const pullRequestStore = new PullRequestStore({ client: gitHubClient });
   const releaseStore = new ReleaseStore({ client: gitHubClient });
@@ -44,6 +45,7 @@ async function run() {
     <BrowserRouter>
       <App
         repoStore={repoStore}
+        topicStore={topicStore}
         issueStore={issueStore}
         pullRequestStore={pullRequestStore}
         releaseStore={releaseStore}

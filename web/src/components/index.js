@@ -12,6 +12,7 @@ import IssueList from './issue_list';
 import PullRequestList from './pull_request_list';
 
 import { RepoStoreInterface } from '../stores/repo_store';
+import { TopicStoreInterface } from '../stores/topic_store';
 import { IssueStoreInterface } from '../stores/issue_store';
 import { PullRequestStoreInterface } from '../stores/pull_request_store';
 import { ReleaseStoreInterface } from '../stores/release_store';
@@ -21,7 +22,7 @@ import { StorageInterface } from '../lib/storage';
 
 type Props = {|
   repoStore: RepoStoreInterface,
-  // topicStore: TopicStoreInterface,
+  topicStore: TopicStoreInterface,
   issueStore: IssueStoreInterface,
   pullRequestStore: PullRequestStoreInterface,
   releaseStore: ReleaseStoreInterface,
@@ -62,7 +63,7 @@ class App extends React.Component<Props> {
             <Route path={`${root}/`}>
               <RepoList
                 repoStore={this.props.repoStore}
-                // topicStore={this.props.topicStore}
+                topicStore={this.props.topicStore}
                 issueStore={this.props.issueStore}
                 pullRequestStore={this.props.pullRequestStore}
                 releaseStore={this.props.releaseStore}

@@ -44,6 +44,7 @@ func main() {
 	fileServer := server.NewFileServer(assets)
 	oauth := http.StripPrefix("/oauth", server.NewOAuth(server.GenerateState, "https://github.com", redirectURI, clientID, clientSecret))
 
+	fmt.Printf("Running on :%s\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		switch {
 		case strings.HasPrefix(req.URL.Path, "/oauth"):

@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [Paketo Dashboard](https://dashboard.paketo.io)
 
-## Available Scripts
+The Paketo Dashboard provides an overview of the project allowing the core
+development team to track open issues, pull requests, and releases.
 
-In the project directory, you can run:
+![Dashboard](./assets/dashboard.png)
 
-### `yarn start`
+## Deployment
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The dashboard is deployed using the [`.github/workflows/deploy.yml`
+workflow](./.github/workflows/deploy.yml). This workflow packages the dashboard
+using buildpacks and then deploys the resulting image onto Google Cloud Run.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Development
 
-### `yarn test`
+You can build and run the app by executing the following:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+GITHUB_CLIENT_ID=<your-client-id> \
+GITHUB_CLIENT_SECRET=<your-client-secret> \
+REDIRECT_URI=http://localhost:8080/oauth/callback \
+./scripts/run.sh
+```
 
-### `yarn build`
+For details on getting a client for GitHub API access, check out [this
+documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Architecture
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The application is split into two main parts, a [backend server](./server) that is
+responsible for handing the OAuth workflow and serving static assets, and the
+[frontend](./web) that is a React app that interacts with the GitHub API to
+gather and display aggregate details about the project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When you build the application, you will notice that the output is a single
+binary. This is because the static assets for the app are
+[embedded](https://pkg.go.dev/embed) into the Go binary at compilation time.
 
-### `yarn eject`
+### Frontend development
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The frontend can be run decoupled from the backend server for a faster local
+development cycle. To do this, you will need to run the following:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+cd web
+REACT_APP_GITHUB_TOKEN=<your-github-token> yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For details on creating a token for GitHub API access, check out [this
+documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Testing
 
-## Learn More
+You can run the tests for the backend with the following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+go test ./server
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+For the frontend, run the following:
 
-### Code Splitting
+```
+cd web
+yarn test
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Flow
 
-### Analyzing the Bundle Size
+The frontend codebase uses [Flow](https://flow.org/) for static type checking.
+To run the checker, execute the following:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```
+cd web
+yarn run flow
+```

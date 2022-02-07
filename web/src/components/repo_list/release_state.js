@@ -4,8 +4,8 @@ import React, { type Node } from 'react';
 
 import Repo from '../../models/repo';
 import Release, { NullRelease } from '../../models/release';
-import { ReleaseStoreInterface } from '../../stores/release_store';
-import { CacheInterface } from '../../lib/cache';
+import { type ReleaseStoreInterface } from '../../stores/release_store';
+import { type CacheInterface } from '../../lib/cache';
 
 import ExternalLink from '../lib/external_link';
 import { GitCommitIcon } from '@primer/octicons-react';

@@ -4,7 +4,7 @@ import PullRequest from '../models/pull_request';
 import User from '../models/user';
 import Label from '../models/label';
 
-import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
+import { type GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
 type Props = {|
   client: GitHubClientInterface,

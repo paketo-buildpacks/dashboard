@@ -1,7 +1,7 @@
 // @flow
 
 import Release, { NullRelease } from '../models/release';
-import { GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
+import { type GitHubClientInterface, type GitHubClientResponse } from '../lib/github_client';
 
 type Props = {|
   client: GitHubClientInterface,

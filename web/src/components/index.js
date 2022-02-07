@@ -11,13 +11,13 @@ import RepoList from './repo_list';
 import IssueList from './issue_list';
 import PullRequestList from './pull_request_list';
 
-import { RepoStoreInterface } from '../stores/repo_store';
-import { IssueStoreInterface } from '../stores/issue_store';
-import { PullRequestStoreInterface } from '../stores/pull_request_store';
-import { ReleaseStoreInterface } from '../stores/release_store';
-import { TimerInterface } from '../lib/timer';
-import { CacheInterface } from '../lib/cache';
-import { StorageInterface } from '../lib/storage';
+import { type RepoStoreInterface } from '../stores/repo_store';
+import { type IssueStoreInterface } from '../stores/issue_store';
+import { type PullRequestStoreInterface } from '../stores/pull_request_store';
+import { type ReleaseStoreInterface } from '../stores/release_store';
+import { type TimerInterface } from '../lib/timer';
+import { type CacheInterface } from '../lib/cache';
+import { type StorageInterface } from '../lib/storage';
 
 type Props = {|
   repoStore: RepoStoreInterface,

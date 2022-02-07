@@ -5,12 +5,12 @@ import React, { type Node } from 'react';
 import Repo from '../../models/repo';
 import RepoItem from './repo_item';
 
-import { IssueStoreInterface } from '../../stores/issue_store';
-import { RepoStoreInterface } from '../../stores/repo_store';
-import { PullRequestStoreInterface } from '../../stores/pull_request_store';
-import { ReleaseStoreInterface } from '../../stores/release_store';
-import { TimerInterface } from '../../lib/timer';
-import { CacheInterface } from '../../lib/cache';
+import { type IssueStoreInterface } from '../../stores/issue_store';
+import { type RepoStoreInterface } from '../../stores/repo_store';
+import { type PullRequestStoreInterface } from '../../stores/pull_request_store';
+import { type ReleaseStoreInterface } from '../../stores/release_store';
+import { type TimerInterface } from '../../lib/timer';
+import { type CacheInterface } from '../../lib/cache';
 
 import { SyncIcon } from '@primer/octicons-react';
 
@@ -53,7 +53,9 @@ export default class RepoList extends React.Component<Props, State> {
       repos: repos,
     };
 
-    this.handleReload = this.handleReload.bind(this);
+    this.handleReload = (event: SyntheticEvent<HTMLButtonElement>) => {
+      this.load();
+    };
   }
 
   componentDidMount() {
@@ -63,10 +65,6 @@ export default class RepoList extends React.Component<Props, State> {
 
   componentWillUnmount() {
     this.props.timer.clearInterval(this.interval);
-  }
-
-  handleReload(event: SyntheticEvent<HTMLButtonElement>): void {
-    this.load();
   }
 
   async load() {

@@ -4,8 +4,8 @@ import React, { type Node } from 'react';
 
 import PullRequest from '../../models/pull_request';
 import Repo from '../../models/repo';
-import { PullRequestStoreInterface } from '../../stores/pull_request_store';
-import { CacheInterface } from '../../lib/cache';
+import { type PullRequestStoreInterface } from '../../stores/pull_request_store';
+import { type CacheInterface } from '../../lib/cache';
 
 import ExternalLink from '../lib/external_link';
 import { GitPullRequestIcon } from '@primer/octicons-react';

@@ -3,10 +3,10 @@
 import React, { type Node } from 'react';
 
 import Repo from '../../models/repo';
-import { IssueStoreInterface } from '../../stores/issue_store';
-import { PullRequestStoreInterface } from '../../stores/pull_request_store';
-import { ReleaseStoreInterface } from '../../stores/release_store';
-import { CacheInterface } from '../../lib/cache';
+import { type IssueStoreInterface } from '../../stores/issue_store';
+import { type PullRequestStoreInterface } from '../../stores/pull_request_store';
+import { type ReleaseStoreInterface } from '../../stores/release_store';
+import { type CacheInterface } from '../../lib/cache';
 
 import IssueCount from './issue_count';
 import PullRequestCount from './pull_request_count';

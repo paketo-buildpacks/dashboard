@@ -2,9 +2,9 @@
 
 import React, { type Node } from 'react';
 
-import { RepoStoreInterface } from '../../stores/repo_store';
-import { IssueStoreInterface } from '../../stores/issue_store';
-import { CacheInterface } from '../../lib/cache';
+import { type RepoStoreInterface } from '../../stores/repo_store';
+import { type IssueStoreInterface } from '../../stores/issue_store';
+import { type CacheInterface } from '../../lib/cache';
 
 import Repo from '../../models/repo';
 import Issue from '../../models/issue';

@@ -4,8 +4,8 @@ import React, { type Node } from 'react';
 
 import Issue from '../../models/issue';
 import Repo from '../../models/repo';
-import { IssueStoreInterface } from '../../stores/issue_store';
-import { CacheInterface } from '../../lib/cache';
+import { type IssueStoreInterface } from '../../stores/issue_store';
+import { type CacheInterface } from '../../lib/cache';
 import { IssueOpenedIcon } from '@primer/octicons-react';
 
 import ExternalLink from '../lib/external_link';

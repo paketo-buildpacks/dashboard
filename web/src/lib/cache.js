@@ -1,6 +1,6 @@
 // @flow
 
-import { StorageInterface } from './storage';
+import { type StorageInterface } from './storage';
 
 type Props = {|
   storage: StorageInterface,

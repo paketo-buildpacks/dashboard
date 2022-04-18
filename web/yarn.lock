@@ -5175,10 +5175,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.1.1.tgz#c4b489e80096d9df1dfc97c79871aea7c617c469"
   integrity sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
 
-flow-bin@0.176.1:
-  version "0.176.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.176.1.tgz#16a99d5efe63109df663bee9423103bcfe38a5ba"
-  integrity sha512-NgGY28iMxAPB98Q6OS40DVgUdRqqwIp7CYPJQlKgGEKIrGe6FayABdqbi2in5ztHp7IISCewsLpD8gR++1FYwg==
+flow-bin@0.176.2:
+  version "0.176.2"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.176.2.tgz#b257da3ebd131b368c95c72e010dc823bfa159e8"
+  integrity sha512-gX3YJvv40oRY7A/ytEsWLDMHTfIkmy6ir1D4e5fklVsj3958iTg90cO8XwDdspnxQSgEUP1HW1e6wlX1OlQ5+Q==
 
 follow-redirects@^1.0.0:
   version "1.14.7"
@@ -6881,10 +6881,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-luxon@2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.3.1.tgz#f276b1b53fd9a740a60e666a541a7f6dbed4155a"
-  integrity sha512-I8vnjOmhXsMSlNMZlMkSOvgrxKJl0uOsEzdGgGNZuZPaS9KlefpE9KV95QFftlJSC+1UyCC9/I69R02cz/zcCA==
+luxon@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.3.2.tgz#5f2f3002b8c39b60a7b7ad24b2a85d90dc5db49c"
+  integrity sha512-MlAQQVMFhGk4WUA6gpfsy0QycnKP0+NlCBJRVRNPxxSIbjrCbQ65nrpJD3FVyJNZLuJ0uoqL57ye6BmDYgHaSw==
 
 lz-string@^1.4.4:
   version "1.4.4"

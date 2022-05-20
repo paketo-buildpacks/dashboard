@@ -16,7 +16,7 @@
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "12.1.4",
     "@testing-library/user-event": "13.5.0",
-    "flow-bin": "0.178.0",
+    "flow-bin": "0.178.1",
     "luxon": "2.4.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",

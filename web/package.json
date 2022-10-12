@@ -12,7 +12,7 @@
     ]
   },
   "dependencies": {
-    "@primer/octicons-react": "17.6.0",
+    "@primer/octicons-react": "17.7.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "12.1.4",
     "@testing-library/user-event": "13.5.0",

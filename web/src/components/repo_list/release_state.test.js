@@ -44,6 +44,7 @@ describe('ReleaseState', () => {
         release: {
           tag: 'v1.2.3',
           commitsBehind: 2,
+          createdAt: new Date(),
         },
       });
 
@@ -69,12 +70,22 @@ describe('ReleaseState', () => {
       expect(count).toHaveClass('behind');
       expect(count).toHaveAttribute('href', 'some-repo-url/compare/v1.2.3...main');
     });
+
+    it('renders tooltip', () => {
+      const root = result.container.firstElementChild;
+      expect(result.container.firstElementChild).toHaveAttribute('title');
+    });
   });
 
   describe('when the promise is not resolved', () => {
     it('renders an emdash', () => {
       const tag = result.getByRole('link', { name: 'tag' });
       expect(tag).toHaveTextContent(/—/i);
+    });
+
+    it('tooltip says "never released"', () => {
+      const root = result.container.firstElementChild;
+      expect(result.container.firstElementChild).toHaveAttribute('title', 'never released');
     });
   });
 
@@ -83,6 +94,7 @@ describe('ReleaseState', () => {
       resolveLatestRelease(new Release({
         tag: 'v1.2.3',
         commitsBehind: 0,
+        createdAt: new Date(),
       }))
 
       result.rerender(
@@ -103,6 +115,11 @@ describe('ReleaseState', () => {
       const count = result.getByRole('link', { name: 'commits-behind' });
       expect(count).toHaveTextContent(/0/i);
       expect(count).not.toHaveClass('behind');
+    });
+
+    it('renders tooltip', () => {
+      const root = result.container.firstElementChild;
+      expect(result.container.firstElementChild).toHaveAttribute('title');
     });
   });
 });

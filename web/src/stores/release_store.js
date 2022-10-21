@@ -23,6 +23,7 @@ export default class ReleaseStore {
     let release = NullRelease;
     if (response.status === 200) {
       const tagName = (response.data: { [string]: any })['tag_name'];
+      const createdAt = (response.data: { [string]: any })['created_at'];
 
       response = await this.client.do({
         method: 'GET',
@@ -34,6 +35,7 @@ export default class ReleaseStore {
       release = new Release({
         tag: tagName,
         commitsBehind: behindBy,
+        createdAt: createdAt,
       });
     }
 

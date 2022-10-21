@@ -8,6 +8,7 @@ import { type ReleaseStoreInterface } from '../../stores/release_store';
 import { type CacheInterface } from '../../lib/cache';
 
 import ExternalLink from '../lib/external_link';
+import moment from 'moment';
 import { GitCommitIcon } from '@primer/octicons-react';
 
 import '../../styles/repo_list/release_state.css';
@@ -59,10 +60,16 @@ export default class ReleaseState extends React.Component<Props, State> {
       commitsClass += ' behind';
     }
 
+    let lastReleaseTime = "never released";
+    if(this.state.release.createdAt) {
+      lastReleaseTime = `released ${moment(this.state.release.createdAt).fromNow()}`;
+    }
+
     return (
       <div
         className='release-state'
         aria-label='release-state'
+        title={lastReleaseTime}
       >
         <ExternalLink
           className='tag'

@@ -25,6 +25,9 @@ export default class RepoStore {
       });
 
       for (const repo of response.data) {
+        if(repo.archived) {
+          continue;
+        }
         repos.push(new Repo({
           id: repo.id,
           name: repo.full_name,

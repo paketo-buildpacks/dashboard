@@ -25,6 +25,7 @@ describe('RepoStore', () => {
               full_name: 'some-org/first-repo',
               html_url: 'first-repo-url',
               open_issues_count: 1,
+              archived: false,
             },
             {
               id: 2222,
@@ -32,6 +33,15 @@ describe('RepoStore', () => {
               full_name: 'some-org/second-repo',
               html_url: 'second-repo-url',
               open_issues_count: 2,
+              archived: false,
+            },
+            {
+              id: 1234,
+              name: 'archived-repo',
+              full_name: 'some-org/archived-repo',
+              html_url: 'archived-repo-url',
+              open_issues_count: 42,
+              archived: true,
             },
           ],
           headers: {
@@ -47,6 +57,7 @@ describe('RepoStore', () => {
               full_name: 'some-org/third-repo',
               html_url: 'third-repo-url',
               open_issues_count: 3,
+              archived: false,
             },
             {
               id: 4444,
@@ -54,6 +65,7 @@ describe('RepoStore', () => {
               full_name: 'some-org/fourth-repo',
               html_url: 'fourth-repo-url',
               open_issues_count: 4,
+              archived: false,
             },
           ],
           headers: {

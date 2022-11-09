@@ -30,11 +30,13 @@ jobs:
           --builder paketobuildpacks/builder:buildpackless-base \
           --publish
 
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: ${{ secrets.GOOGLE_CLOUD_RUN_SERVICE_ACCOUNT_KEY }}
+        
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v1.0.0
-      with:
-        project_id: paketo-buildpacks
-        service_account_key: ${{ secrets.GOOGLE_CLOUD_RUN_SERVICE_ACCOUNT_KEY }}
 
     - name: Deploy
       env:

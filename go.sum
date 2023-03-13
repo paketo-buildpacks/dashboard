@@ -3,9 +3,9 @@ github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 h1:p104kn46Q8Wd
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/google/go-cmp v0.5.9/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/pprof v0.0.0-20210407192527-94a9f03dee38 h1:yAJXTCF9TqKcTiHJAE8dj7HMvPfh66eeA2JYW7eFpSE=
-github.com/onsi/ginkgo/v2 v2.8.4 h1:gf5mIQ8cLFieruNLAdgijHF1PYfLphKm2dxxcUtcqK0=
-github.com/onsi/gomega v1.27.2 h1:SKU0CXeKE/WVgIV1T61kSa3+IRE8Ekrv9rdXDwwTqnY=
-github.com/onsi/gomega v1.27.2/go.mod h1:5mR3phAHpkAVIDkHEUBY6HGVsU+cpcEscrGPB4oPlZI=
+github.com/onsi/ginkgo/v2 v2.9.0 h1:Tugw2BKlNHTMfG+CheOITkYvk4LAh6MFOvikhGVnhE8=
+github.com/onsi/gomega v1.27.3 h1:5VwIwnBY3vbBDOJrNtA4rVdiTZCsq9B5F12pvy1Drmk=
+github.com/onsi/gomega v1.27.3/go.mod h1:5vG284IBtfDAmDyrK+eGyZmUgUlmi+Wngqo557cZ6Gw=
 github.com/sclevine/spec v1.4.0 h1:z/Q9idDcay5m5irkZ28M7PtQM4aOISzOpj4bUPkDee8=
 github.com/sclevine/spec v1.4.0/go.mod h1:LvpgJaFyvQzRvc1kaDs0bulYwzC70PbiYjC4QnFHkOM=
 golang.org/x/net v0.7.0 h1:rJrUqqhjsgNp7KqAIc25s9pZnjU7TUcSY7HcVZjdn1g=

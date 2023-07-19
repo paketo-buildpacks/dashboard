@@ -22,7 +22,7 @@ jobs:
         echo "${GCR_PUSH_BOT_JSON_KEY}" | docker login --username _json_key --password-stdin gcr.io
 
     - name: Setup pack
-      uses: buildpacks/github-actions/setup-pack@v5.2.0
+      uses: buildpacks/github-actions/setup-pack@v5.3.0
 
     - name: Pack Build
       run: |

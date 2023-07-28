@@ -2193,10 +2193,10 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@primer/octicons-react@18.3.0":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-18.3.0.tgz#1b608048fe26e4e66d9f3de1eac8eb82195839f5"
-  integrity sha512-kOoc4wrBw3bPe2ZPj9BmCwXdEkw8hxUX/tFCvcjOsZ6eywaQXm3PR0yZnPZxZ8o4RFj2tdg/cwGr4+cU83weHw==
+"@primer/octicons-react@19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-19.5.0.tgz#d02eb99842d6368b9f2d4011ebbd6f8b6dd620e6"
+  integrity sha512-8GZCcoyGz0CYhW+zi0yMsrn2qSBzZp4dbRomesAhtOzJLxKGZMyFd7VSp7mEYCCujMSCj/8faKgzyj7UrL6/3w==
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"

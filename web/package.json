@@ -14,7 +14,7 @@
   "dependencies": {
     "@primer/octicons-react": "18.3.0",
     "@testing-library/jest-dom": "5.16.5",
-    "@testing-library/react": "12.1.4",
+    "@testing-library/react": "14.1.0",
     "@testing-library/user-event": "13.5.0",
     "flow-bin": "0.184.0",
     "luxon": "3.3.0",

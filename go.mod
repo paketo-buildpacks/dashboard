@@ -3,7 +3,7 @@ module github.com/paketo-buildpacks/dashboard
 go 1.19
 
 require (
-	github.com/onsi/gomega v1.29.0
+	github.com/onsi/gomega v1.30.0
 	github.com/sclevine/spec v1.4.0
 )
 
